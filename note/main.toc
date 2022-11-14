@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Linear Algebra}{3}{section.2}%
+\contentsline {subsection}{\numberline {1.a}Least-Squares Problem Statement}{3}{subsection.3}%
+\contentsline {subsection}{\numberline {1.b}Norm}{4}{subsection.10}%
+\contentsline {subsection}{\numberline {1.c}Gram-Schimdt}{5}{subsection.19}%
+\contentsline {subsection}{\numberline {1.d}Symmetric Matrices}{6}{subsection.28}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

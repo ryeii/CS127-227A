@@ -1,0 +1,216 @@
+\section{Linear Algebra}
+
+\subsection{Least-Squares Problem Statement} % (fold)
+\label{sub:least_squares_problem_statement}
+
+\begin{definition}[Least Squares]
+	Assume matrix A and vectors $\vec{x}$ and $\vec{b}$. The problem defined by
+	\[
+	\min_{\vec{x}}\|A\v{x}-\v{b}\|^2
+	\]
+	is a Least Squares Problem (LSP).
+\end{definition}
+
+\begin{example}
+	Assume we have two dimensional data set $\vec{x}$ and $\vec{y}$ and we want to formalize a LSP to find a linear correlation between x and y. We first formalize the goal linear correlation as
+	\[
+	y=mx+c
+	\]
+	where we want to find the optimal values for m and c to minimize the squared loss across all data points. Summarizing the above equation for all data points gives us
+	\[
+	\begin{bmatrix}
+		x_1 & 1\\x_2&1\\\vdots\\x_n&1
+	\end{bmatrix}
+	\begin{bmatrix}
+		m\\c
+	\end{bmatrix}=
+	\begin{bmatrix}
+		y_1\\y_2\\\vdots\\y_n
+	\end{bmatrix}
+	\]
+	Where
+	\[
+	A = \begin{bmatrix}
+		x_1 & 1\\x_2&1\\\vdots\\x_n&1
+	\end{bmatrix},\;\;
+	\vec{x} = \begin{bmatrix}
+		m\\c
+	\end{bmatrix}, \;\;
+	\Vec{y} = \begin{bmatrix}
+		y_1\\y_2\\\vdots\\y_n
+	\end{bmatrix}
+	\]
+	And therefore
+	\[
+	\min_{\vec{x}}\|A\vec{x}-\vec{b}\|^2 = \min_{m,c}\sum_{i=1}^n(y_i-(mx_i+c))^2
+	\]
+\end{example}
+
+\begin{theorem}[Ordinary Least Squares]
+	Given the column space of the matrix A, for vector $\v{b}$ not in the said column space, $A\v{x}-\v{b} = \v{e}$ must be orthogonal to the columns of A. (Pythagora's theorem)
+
+Therefore, the dot products of every column of A and $\v{e}$ must be zero, i.e.
+	\begin{align*}
+		A^\top(A\v{x}-\v{b}) &= 0\\
+		A^\top A\v{x}-A^\top \v{b} &= 0\\	
+		A^\top A\v{x} &= A^\top \v{b}\\
+		\v{x} &= (A^\top A)^{-1}A^\top \v{b}
+	\end{align*}
+We conclude that the solution for Ordinary Least Squares (OLS) is
+\[
+\v{x}^* = \argmin_{\v{x}}\|A\v{x}-\v{b}\|^2 = (A^\top A)^{-1}A^\top \v{b}
+\]
+\end{theorem}
+
+% subsection least_squares_problem_statement (end)
+
+\subsection{Norm} % (fold)
+\label{sub:norm}
+
+\begin{definition}[Norm]
+	A Norm is defined as
+	\[
+	f:= \mathbf{X}\rightarrow\mathbb{R}
+	\]
+	For vector space $\mathbf{X}$.
+
+	The norm of x is denoted as $\|x\|$.
+
+	For any vector x and y, we have
+	\begin{itemize}
+		\item $\|x\|\ge0$ and $\|x\|=0$ iff $x=\v{0}$
+		\item $\|x+y\|\le\|x\|+\|y\|$
+		\item $\|\alpha x\|=|\alpha|*\|x\|$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[l-p Norm]
+Generally, l-p norm is defined as
+\[
+\|\v{x}\|_p := \left(\sum|x_i|^p\right)^{\frac{1}{p}};\;\;1\le p<\infty
+\]
+Commonly used norms:
+\begin{itemize}
+	\item $\|\v{x}\|_1 := \sum|x_i|$
+	\item $\|\v{x}\|_2 := \sqrt{\sum|x_i|^2}$
+	\item $\|\v{x}\|_\infty := \max|x_i|$
+\end{itemize}
+
+\end{definition}
+
+\begin{theorem}[Cauchy-Schwartz Inequality]
+	\[
+<\v{x}, \v{y}> = \v{x}^\top\v{y} = \|\v{x}\|_2\|\v{y}\|_2\cos \theta
+	\]
+	Since $-1 \le \cos \theta \le 1$,
+	\[
+<\v{x}, \v{y}> = \v{x}^\top\v{y} \le \|\v{x}\|_2\|\v{y}\|_2
+	\]
+\end{theorem}
+
+\begin{theorem}[Holder's Inequality]
+For $p,q\ge1 \;\;\t{s.t.}\;\; \frac{1}{p}+\frac{1}{q}=1$,
+\[
+|\v{x}^\top\v{y}|\le \sum_{i=1}^n|x_iy_i|\le \|\v{x}\|_p\|\v{y}\|_p
+\]
+i.e., Cauchy-Schwartz is a narrowed case of Holder's Inequality.
+\end{theorem}
+
+% subsection norm (end)
+
+\subsection{Gram-Schimdt} % (fold)
+\label{sub:gram_schimdt}
+
+\begin{theorem}[Gram-Schimdt/QR-decomposition]
+	Let X be a vector space with basis \{$\li{\v{a}}{n}$\}, which is orthonormal.
+	For any matrix A,
+	\begin{align*}
+		A &= QR\\
+		\begin{bmatrix}
+			\li{\v{a}}{n}
+		\end{bmatrix} &=
+		\begin{bmatrix}
+			\li{\v{q}}{n}
+		\end{bmatrix}
+		\begin{bmatrix}
+			\v{r}_{11} & \v{r}_{12} & \cdots & \v{r}_{1n}\\
+			0 & \v{r}_{22} & \cdots & \v{r}_{2n} \\
+			0 & 0 & \ddots & \v{r}_{3n} \\
+			0 & 0 & 0 & \v{r}_{nn}
+		\end{bmatrix}
+	\end{align*}
+	Where Q is orthonormal andR is upper-triangular.
+\end{theorem}
+
+\begin{theorem}[Fundamental Theorem of Linear Algebra]
+For matrix $A\in \mathbb{R}^{m*n}$,
+	\[
+Null(A)\bigoplus Range(A^\top) = \mathbb{R}^n
+	\]
+Where $\bigoplus$ denotes "direct sum" and $Range(A^\top)$ is the column space of $A^\top$. With the said equation we can also conclude that
+\[
+Range(A)\bigoplus Null(A^\top) = \mathbb{R}^m
+\]
+\end{theorem}
+
+\begin{theorem}[orthogonal decomposition theorem]
+X a vector space and S a subspace of X. Then for any $\v{x}$ in X,
+\[
+\v{x} = \v{s} + \v{r}, \;\; \v{s} \in S,\;\; \v{r} \in S^\perp
+\]
+Such that
+\[
+S^\perp = \{\v{r}\;|<\v{r}, \v{s}>\;=0,\;\; \forall \v{s}\in S\}
+\]
+Therefore, 
+\[
+\mathbf{X} = S\bigoplus S^\perp
+\]
+\end{theorem}
+
+\begin{example}[Minimum Norm Problem]
+	We want to find
+	\[
+\min \|\v{x}\|_2^2
+	\]
+	subject to $A\v{x}=\v{b}$.
+	From FTLA we know that
+	\[
+\v{x} = \v{y}+\v{z}\;\;s.t.\;\;\v{y}\in N(A;\;\;\v{z}\in R(A^\top).
+	\]
+	And
+	\[
+A(\v{y}+\v{z}) = 0 + A\v{z} = \v{b}
+	\]
+	Since $\v{y} \perp \v{z}$,
+	\[
+\|\v{x}\|_2^2 = \|y\|_2^2+\|z\|_2^2
+	\]
+	Consider $\v{z} = A^\top\v{w}$, 
+	\begin{align*}
+		A\v{z} &= \v{b}\\
+		AA^\top\v{w} &= \v{b}\\
+		\v{w} &= (AA^\top)^{-1}\v{b}
+	\end{align*}
+	Therefore
+	\[
+\v{z} = \min{\|\v{x}\|_2^2} =  A^\top(AA^\top)^{-1}\v{b}
+	\]
+\end{example}
+
+% subsection gram_schimdt (end)
+
+\subsection{Symmetric Matrices} % (fold)
+\label{sub:symmetric_matrices}
+
+\begin{definition}
+	Matrix A is symmetric if $A=A^\top$, i.e. $A_{ij} = A_{ji}$. 
+
+	Set $\mathbb{S}^n$ means the set of symmetric matrices of dimension n.
+\end{definition}
+
+% subsection symmetric_matrices (end)
+
+
+
+
