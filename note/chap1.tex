@@ -437,5 +437,56 @@ trace(A) = \sum_{i=1}^na_{ii}
 \end{align*}
 \end{remark}
 
+\begin{remark}[Proof of Eckart-Young-Mirsky]
+Goal: B: rank(k), $\|A-B\|_F \ge \|A-A_k\|_F$
+\begin{proof}
+\[
+\|A-A_k\|_F = \|\sum_{i=k+1}^n \sigma_i\v{u}_i\v{v}_i\|_F = \sqrt{\sum_{i=k+1}^n \sigma_i^2}
+\]
+Note that the goal is true iff
+\[
+\sum_{i=1}^n \sigma_i^2(A-B) \ge \sum_{i=k+1}^n \sigma_i^2(A)
+\]
+Further note that the previous statement is true iff:
+\[
+\sigma_i^2(A-B) \ge \sigma_{k+i}^2(A)
+\]
+Let $\sigma_{k+i}(A)$be the k+ith largest singular value of A. Hence
+\[
+\sigma_{k+i}(A) = \sigma_{max}(A-A_k)
+\]
+Denote A-B = C. Then
+\[
+\sigma_i(A-B) = \sigma_i(C) = \|C-C_{i-1}\|_2
+\]
+Since B has rank k,
+\[
+\|B-B_k\|_2 = 0
+\]
+Add it to the previous equation gives us
+\begin{align*}
+	\sigma_i(A-B) &= \|C-C_{i-1}\|_2 + \|B-B_k\|_2\\
+	&\ge \|C+B-C_{i-1}-B_k\|_2\\
+	&\ge \|A-C_{i-1}-B_k\|_2
+\end{align*}
+Let $D = C_{i-1}+B_k$. Rank(D) $\le$ i-1+k. Then
+\begin{align*}
+	\sigma_i(A-B) &\ge \|A-D\|_2
+\end{align*}
+Consider the solution to the optimization problem
+\[
+\argmin_{D, \;rank(D)\le i+k-1}\|A-D\|_2=A_k+i-1
+\]
+\[
+\min_{rank(D)\le i+k-1}\|A-D\|_2 = \sigma_{k+1}(A)
+\]
+Finally, bring the above result back to the previous equation gives us
+\[
+\sigma_i(A-B) \ge \sigma_{k+1}(A)
+\]
+as desired.
+\end{proof}
+\end{remark}
+
 % subsection low_rank_approximation (end)
 
