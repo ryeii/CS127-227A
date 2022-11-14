@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1668385846 "main.tex" "main.pdf" "main" 1668385848
+["pdflatex"] 1668410593 "main.tex" "main.pdf" "main" 1668410595
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1647894602 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1647894602 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1647894602 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -26,6 +26,7 @@
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmss12.tfm" 1647894602 1324 37b971caf729d7edd9cbb9f9b0ea76eb ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm" 1647894602 1272 e2d13f0df30bf3ad990bb9d028e37f34 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm" 1647894602 1124 6c73e740cf17375f03eec0ee63599741 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmti12.tfm" 1647894602 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolA12.tfm" 1647894602 1380 e07a490a6c9811eaaabe76956dd41cca ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolA6.tfm" 1647894602 1380 358cdbf61b0c59009383e167d58b911a ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolA8.tfm" 1647894602 1380 6e666ddad8a04c1111441d18ca5a8fe3 ""
@@ -69,6 +70,7 @@
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb" 1647894602 24393 3b7eb51a67a0a62aec5849271bdb9c2e ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb" 1647894602 28902 2f5c04fd2884d1878057baa5aad22765 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1647894602 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1647894602 36118 fad905eba93cff5bce1e185fe980a177 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1647894602 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb" 1647894602 136101 f533469f523533d38317ab5729d00c8a ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol12.pfb" 1647894602 229585 bdba772a656e8a0005d66210fc9c2be0 ""
@@ -350,13 +352,14 @@
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/web2c/texmf.cnf" 1647894602 40174 4e2f94c7b252db2ad3c0cfdef6912ab3 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1647894602 2826556 0002dc3aea202f8dbf42bc967c64f503 ""
   "beel.sty" 1662355109 28730 ae84ac4b947155a0f050ce881975b9a6 ""
-  "chap1.aux" 1668385847 4647 424adaafa21e2603f90c0e07a0ddd6b0 "pdflatex"
-  "chap1.tex" 1668385842 5320 228e554a3bae39e26967537588675ac3 ""
-  "main.aux" 1668385847 2791 478deaeaf895590516572238a35ddcd8 "pdflatex"
+  "chap1.aux" 1668410594 6365 b1131c187ee3a38ab940c138368cb598 "pdflatex"
+  "chap1.tex" 1668410587 9612 c26a591915d6bd0a233ba3daa85703d7 ""
+  "img/svd1.png" 1668410243 32495 589dc1e07c47ce52a82bac13da8d1c85 ""
+  "main.aux" 1668410594 3802 226de4ec3b1618cee329740821cc06cc "pdflatex"
   "main.out" 0 -1 0 "pdflatex"
   "main.pre" 0 -1 0 "pdflatex"
-  "main.tex" 1668377286 834 284ba5254235650d36f5941a42c8d991 ""
-  "main.toc" 1668385847 459 72670f53ce77be84aa6dfa865bdf8084 "pdflatex"
+  "main.tex" 1668409496 834 284ba5254235650d36f5941a42c8d991 ""
+  "main.toc" 1668410594 645 0683c475d77d2ac72c7c8be6ca668fdc "pdflatex"
   "preamble.tex" 1668380726 3019 c147ecbfc64018c4f32dbafd0dde09dd ""
   (generated)
   "chap1.aux"

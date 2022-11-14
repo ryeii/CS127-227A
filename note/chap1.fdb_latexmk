@@ -1,9 +1,16 @@
 # Fdb version 3
-["pdflatex"] 1668378464 "chap1.tex" "chap1.pdf" "chap1" 1668378464
+["pdflatex"] 1668406723 "chap1.tex" "chap1.pdf" "chap1" 1668406723
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/map/fontname/texfonts.map" 1647894602 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1647894602 4385071 4481eb56d8dc7e3e247ed9a139c582cd ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1647894602 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1647894602 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm" 1647894602 1332 f817c21a1ba54560425663374f1b651a ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1647894602 1336 3125ccb448c1a09074e3aa4a9832f130 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/tex/latex/base/omscmr.fd" 1647894602 2469 ed49302eacbaebdd899d39dedcd25393 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/web2c/texmf.cnf" 1647894602 40174 4e2f94c7b252db2ad3c0cfdef6912ab3 ""
   "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1647894602 2826556 0002dc3aea202f8dbf42bc967c64f503 ""
-  "chap1.aux" 1668378432 1527 41251954de5941c74cc24a62523e8f82 ""
-  "chap1.tex" 1668378463 1119 b6264af113340039a06110fde23134a3 ""
+  "chap1.aux" 1668406716 6209 a200493394cf661159fc9df79c3689c7 ""
+  "chap1.tex" 1668406722 7978 45ce93d78cfa612104961dce3928aa28 ""
   (generated)
   "chap1.log"
   "chap1.pdf"

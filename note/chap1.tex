@@ -209,8 +209,150 @@ A(\v{y}+\v{z}) = 0 + A\v{z} = \v{b}
 	Set $\mathbb{S}^n$ means the set of symmetric matrices of dimension n.
 \end{definition}
 
+\begin{theorem}[Spectral Theorem]
+	If matrix A $\in \mathbb{S^n}$, then
+	\begin{itemize}
+		\item All eigenvalues of A are real numbers
+		\item Eigenspaces are orthogonal
+		\item $dim(N(\lambda_iI-A))=\mu_i$ where $\mu_i$ is the algebraic multiplicity of $\lambda_i$
+	\end{itemize}
+	This means that A is always diagonalizable. i.e.:
+	\[
+	A = U\Lambda U^\top
+	\]
+	where U orthonormal and $\Lambda$ diagonal. Orthonormal (or, unitary) means that the columns of U are orthogonal and all columns are normalized, i.e.
+	\[
+	U^{-1} = U^\top
+	\]
+\end{theorem}
+
+\begin{theorem}
+	For a diagonalizable n*n matrix A that has n linearly independent eigenvectors, A can be factorized as
+	\[
+A = U\Lambda U^\top
+	\]
+	Where U orthonormal and $\Lambda$ is a diagonal matrix consists of the eigenvalues of A such that
+	\[
+\Lambda = \begin{bmatrix}
+	\lambda_1 & & \\
+	& \ddots & \\
+	& & \lambda_i
+\end{bmatrix}
+	\]
+	Therefore it is also called an eigenvalue decomposition.
+\end{theorem}
+
 % subsection symmetric_matrices (end)
 
+\subsection{Principal Component Analysis} % (fold)
+\label{sub:principal_component_analysis}
+
+\begin{definition}
+	For $A\in\mathbb{S}$, its Rayleigh coefficient is defined as
+	\[
+R = \frac{\v{x}^\top A\v{x}}{\v{x}^\top\v{x}}
+	\]
+	The Rayleigh coefficient can bound the eigenvalues of A such that,
+	\[
+\lambda_{min}(A) \le \frac{\v{x}^\top A\v{x}}{\v{x}^\top\v{x}} \le \lambda_{max}(A)
+	\]
+	PCA is very similar to Singular Value Decomposition (SVD). SVD has more nice properties than PCA.
+\end{definition}
+
+% subsection principal_component_analysis (end)
 
 
+\subsection{Singular Value Decomposition} % (fold)
+\label{sub:singular_value_decomposition}
+
+\begin{theorem}[SVD]
+	Let $A \in \mathbb{R}^{m*n}$, the SVD of A is given as
+	\[
+A = U \Sigma V^\top
+	\]
+	Where
+	\[
+	U\in\mathbb{R}^{m*m},\;\; \Sigma\in\mathbb{R}^{m*n},\;\;V\in\mathbb{R}^{n*n}
+	\]
+	and $\Sigma$ has real entries in its diagonal (the singular values) and zero's else where.
+	If $Rank(A)=r$, we can rewrite A as
+	\[
+A = \sigma_1\v{u}_1\v{v}^\top_1 + \sigma_1\v{u}_1\v{v}^\top_1 + \cdots + \sigma_r\v{u}_r\v{v}^\top_r
+	\]
+\end{theorem}
+
+\begin{remark}
+	Consider linear transformation on vector $\v{x}$ given by matrix A, s.t.
+	\[
+	A\v{x} = U \Sigma V^\top \v{x}
+	\]
+	SVD helps breaking the transformation into three smaller steps, i.e.
+	\begin{itemize}
+		\item orthonormal transformation (rotate/reflect) by V,
+		\item scaling by $\Sigma$,
+		\item orthonormal transformation by U.
+	\end{itemize}
+	The following illustration is an example of a 2D transformation $A\v{x}$. It shows the decomposed linear transformation through the unit circles relative to the original unit circle at different stages of the transformation.\\
+	\includegraphics[scale=0.7]{img/svd1.png}
+\end{remark}
+
+\begin{theorem}[Proof of SVD]
+	For $A\in\mathbb{R}^{m*n}$, consider symmetric matrix $A^\top A$ that has eigenvalues $\lambda_1 \cdots \lambda_r > 0$ with corresponding eigenvectors $v_1 \cdots v_r$ and $\lambda_{r+1} \cdots \lambda_n = 0$. Then we know that
+	\[
+	A^\top A\v{v}_i = \lambda_i\v{v}_i
+	\]
+	Let
+	\[
+	V = \begin{bmatrix}
+	| & & | \\
+	\v{v}_1 & \cdots & \v{v}_n\\
+	| & & |
+	\end{bmatrix}
+	\] 
+	Define $\sigma_i = \sqrt{\lambda_i}$, let 
+	\[
+A\v{v}_i = \sigma_i\v{u}_i \;\; i\le r
+	\]
+	for some vector $\v{u}_i$. \\ 
+
+	\textbf{Claim.} $\v{u}_i$ are orthonormal.
+	\begin{proof}
+	\begin{align*}
+		\v{u}_i^\top\v{u}_j &= \frac{(A\v{v}_i)^\top}{\sigma_i}\frac{(A\v{v}_j)}{\sigma_j} \\
+		&= \frac{1}{\sigma_i \sigma_j}\v{v}_i^\top A^\top A \v{v}_j && A^\top A\v{v}_j = \lambda_j\v{v}_j\\
+		&= \frac{1}{\sigma_i \sigma_j}\v{v}_i^\top \lambda_j\v{v}_j \\
+		&= \frac{\lambda_j}{\sigma_i \sigma_j}\v{v}_i^\top \v{v}_j && \v{v}_i \v{v}_j \text{ orthonormal}\\
+		&= \left\{\begin{array}{lr}
+			0 & i\neq j \\
+			1 & i =j
+		\end{array}
+	\end{align*}
+	Therefore $\v{u}_i$ are orthonormal.
+	\end{proof}
+	Recall that A has rank r, we let
+	\[
+V_r = V = \begin{bmatrix}
+	| & & | \\
+	\v{v}_1 & \cdots & \v{v}_r\\
+	| & & |
+	\end{bmatrix}
+	\]
+	Hence
+	\begin{align*}
+		AV_r &= 
+	\begin{bmatrix}
+	| & & | \\
+	\v{u}_1 & \cdots & \v{u}_r\\
+	| & & |
+	\end{bmatrix}\begin{bmatrix}
+	\sigma_1 & & \\
+	 & \ddots & \\
+	 & & \sigma_r
+	\end{bmatrix} = U_r\Sigma_r\\
+	A&= U \Sigma V^\top
+	\end{align*}
+	Since V orthonormal and $V^{-1}=V^\top$
+\end{theorem}
+
+% subsection singular_value_decomposition (end)
 

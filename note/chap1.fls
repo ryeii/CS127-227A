@@ -3,3 +3,14 @@ INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/web2c/texmf.cnf
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-var/web2c/pdftex/pdflatex.fmt
 INPUT chap1.tex
 OUTPUT chap1.log
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/tex/latex/base/omscmr.fd
+OUTPUT chap1.pdf
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map
