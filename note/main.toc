@@ -5,4 +5,5 @@
 \contentsline {subsection}{\numberline {1.d}Symmetric Matrices}{6}{subsection.28}%
 \contentsline {subsection}{\numberline {1.e}Principal Component Analysis}{7}{subsection.35}%
 \contentsline {subsection}{\numberline {1.f}Singular Value Decomposition}{8}{subsection.38}%
+\contentsline {subsection}{\numberline {1.g}Low-Rank Approximation}{10}{subsection.45}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

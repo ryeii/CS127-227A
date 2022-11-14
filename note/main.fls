@@ -1903,13 +1903,14 @@ INPUT chap1.aux
 INPUT chap1.aux
 INPUT ./main.out
 INPUT ./main.out
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol12.pfb
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol6.pfb
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb

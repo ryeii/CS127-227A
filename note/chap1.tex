@@ -281,7 +281,7 @@ A = \sigma_1\v{u}_1\v{v}^\top_1 + \sigma_1\v{u}_1\v{v}^\top_1 + \cdots + \sigma_
 	\]
 \end{theorem}
 
-\begin{remark}
+\begin{remark}[geometric interpretation of SVD]
 	Consider linear transformation on vector $\v{x}$ given by matrix A, s.t.
 	\[
 	A\v{x} = U \Sigma V^\top \v{x}
@@ -355,4 +355,87 @@ V_r = V = \begin{bmatrix}
 \end{theorem}
 
 % subsection singular_value_decomposition (end)
+
+\subsection{Low-Rank Approximation} % (fold)
+\label{sub:low_rank_approximation}
+
+\begin{definition}[matrix norms]
+There are two ways to interpret a matrix, either as an operator or as a block of data. Frobenius norm consider the matrix as a block of data.
+	
+	\noindent\textbf{Frobenius norm} of matrix A is defined as
+	\[
+\|A\|_F = \sqrt{\sum_{i=1}^m\sum_{j=1}^na_{ij}^2} = \sqrt{tr(A^\top A)}
+	\]
+	Frobenius norm is invariant to orthonormal transformations, i.e. given U an orthonormal matrix,
+	\[
+\|UA\|_F = \|AU\|_F = \|A\|_F
+	\]
+
+	\noindent\textbf{Spectral norm}, or $l_2$ norm, interpret the matrix as an operator and is defined as
+	\[
+\|A\|_2 = \max_{\|\v{x}\|_2=1}\|A\v{x}\|_2 = \max_{\|\v{x}\|=1}\sqrt{\v{x}^\top A^\top A\v{x}} = \sqrt{\lambda_{max}(A^\top A)} = \sigma_{max}(A^\top A)
+	\]
+	Intuitively, the spectral norm of a matrix A is the largest scaling that A can do (recall the $\Sigma$ matrix that is used to scale the unit circle in the three steps of transformation after SVD).
+\end{definition}
+
+\begin{theorem}[Eckart-Young-Mirsky Theorem]
+	$A \in \mathbb{R}^{m*n}$. Do SVD gives us
+	\[
+A = U \Sigma V^\top = \sum_{i=1}^n \sigma_i\v{u}_i\v{v}_i^\top
+	\]
+	Define
+	\[
+A_k = \sum_{i=1}^k \sigma_i\v{u}_i\v{v}_i^\top
+	\]
+	We want to find the best k-rank (lower than r) approximation of A, i.e.
+	\[
+\argmin_{B\in \mathbb{R}^{m*n},\;Rank(B)=k}\|A-B\|_F
+	\]
+	Suprisingly, Eckart-Young-Mirsky Theorem tells us that
+	\[
+\argmin_{B\in \mathbb{R}^{m*n},\;Rank(B)=k}\|A-B\|_F = A_k
+	\]
+	Moreover,
+	\[
+\argmin_{B\in \mathbb{R}^{m*n},\;Rank(B)=k}\|A-B\|_2 = A_k
+	\]
+	This theorem relates two completely different norms and is not obvious at all. It shows how fundamental SVD is, such that in any way of looking at a matrix, the decomposition shows up.
+\end{theorem}
+
+\begin{remark}
+	Eckart-Young-Mirsky Theorem can be used to \textbf{compress images}. For an image, the matrix that represents the pixels of the image can be reduced to a lower rank matrix, and hence a smaller set of data, while remains relatively high resolution. The $A_k$ matrix \textbf{captures the key features of the image because it keeps $k$ largest singular values and their corresponding vectors that contribute most to the dataset/transformation.}
+\end{remark}
+
+\begin{definition}[trace]
+	The trace of a matrix is defined as
+	\[
+	trace := \mathbb{R}^{n*n} \rightarrow \mathbb{R}
+	\]
+	\[
+trace(A) = \sum_{i=1}^na_{ii}
+	\]
+\end{definition}
+
+\begin{remark}[Orthonormal transformation invariance of Frobenius norm]
+	Proof that $\|UA\|_F = \|AU\|_F = \|A\|_F$
+	\begin{proof}
+		Recall that $\|A\|_F = \sqrt{tr(A^\top A)}$. By definition, for any matrices A and B, we have $tr(AB)=tr(BA)$ Then,
+		\begin{align*}
+			\|AU\|_F &= \sqrt{tr((AU)^\top(AU))}\\
+			&= \sqrt{tr(U^\top A^\top AU)}\\
+			&= \sqrt{tr(UU^\top A^\top A)}\\
+			&= \sqrt{tr(A^\top A)}\\
+			&= \|A\|_F
+		\end{align*}
+	\end{proof}
+\end{remark}
+
+\begin{remark}[Frobenius norm is the sum of singular values]
+\begin{align*}
+	\|A\|_F &= \|U \Sigma V^\top\|_F = \|\Sigma\|_F\\
+	&=\sqrt{\sum_{i=1}^n \sigma_i^2}
+\end{align*}
+\end{remark}
+
+% subsection low_rank_approximation (end)
 
