@@ -1,0 +1,145 @@
+\section{Vector Calculus} % (fold)
+\label{sec:vector_calculus}
+
+\begin{theorem}[Taylor's Theorem for Vectors]
+	For $f(\v{x}):=\mathbb{R}^n\rightarrow\mathbb{R}$, the derivative of f is
+	\[
+f(\v{x}_0+\Delta\v{x}) = f(\v{x}_0)+\nabla f|^\top_{\v{x}=\v{x}_0}\Delta\v{x} + \frac{1}{2!}(\Delta\v{x})^\top\nabla^2f|_{\v{x}=\v{x}_0}\Delta\v{x}
+	\]
+	Where
+	\begin{align*}
+		\text{Gradient} &= \nabla f|^\top_{\v{x}=\v{x}_0}\\
+		\text{Hessian} &= \nabla^2f|_{\v{x}=\v{x}_0}
+	\end{align*}
+	And
+	\[
+	f(\v{x}_0)+\nabla f|^\top_{\v{x}=\v{x}_0}\Delta\v{x}
+	\]
+	is the first-order approximation (a hyperplane). 
+\end{theorem}
+
+\begin{definition}[Gradient]
+	The gradiant $\nabla f(\v{x})$ captures change according to all components of $\v{x}$. It is defined as
+	\[
+\nabla f(\v{x}) = \begin{bmatrix}
+	\pd{f}{x_1} & \pd{f}{x_2} & \cdots & \pd{f}{x_n}
+\end{bmatrix}
+	\]
+	The gradient always has the same dimension as the input vector.
+\end{definition}
+
+\begin{definition}[Hessian]
+	The hessian is a matrix that captures the change according to all gradients. It is defined as
+	\[
+\nabla^2 f(\v{x})_{ij} = \frac{\partial f}{\partial x_i\partial x_j}
+	\]
+	Hessian is \textbf{often} symmetric.
+\end{definition}
+
+\begin{example}
+	Let
+	\[
+f(\v{x}) = \|x\|_2^2, \;\; f:=\mathbb{R}^2\rightarrow\mathbb{R}
+	\]
+	Then the gradient of this function f is
+	\[
+\nabla f(\v{x}) = \begin{bmatrix}
+	2x_1\\2x_2
+\end{bmatrix} = 2\v{x}
+	\]
+	And the hessian is
+	\[
+\nabla^2 f(\v{x}) = \begin{bmatrix}
+	2 & 0 \\ 0 & 2
+\end{bmatrix}
+	\]
+	According to taylor theorem,
+	\begin{align*}
+		f(\v{x}+\Delta\v{x}) &= (x_1^2+x_2^2)+\begin{bmatrix}
+	2x_1 &2x_2
+\end{bmatrix}
+\begin{bmatrix}
+	\Delta x_1\\\Delta x_2
+\end{bmatrix} + \frac{1}{2}\begin{bmatrix}
+	\Delta x_1&\Delta x_2
+\end{bmatrix}\begin{bmatrix}
+	2 & 0 \\ 0 & 2
+\end{bmatrix}\begin{bmatrix}
+	\Delta x_1\\\Delta x_2
+\end{bmatrix}\\
+&= x_1^2+x_2^2+2x_1 \Delta x_1+2x_2 \Delta x_2 +\Delta x_1^2+ \Delta x_2^2\\
+&= (x_1+\Delta x_1)^2 + (x_2+\Delta x_2)^2
+	\end{align*}
+\end{example}
+
+\begin{example}
+	Let
+	\[
+f(\v{x}) = \v{x}^\top\v{a} = \sum_{i=1}^nx_ia_i
+	\]
+	Then the gradient of this function f is
+	\[
+\nabla f(\v{x}) = \begin{bmatrix}
+	a_1\\a_2\\\vdots\\a_n
+\end{bmatrix} = \v{a}
+	\]
+	And the hessian is
+	\[
+\nabla^2 f(\v{x}) = 0
+	\]
+\end{example}
+
+\begin{example}
+	Let
+	\[
+f(\v{x}) = \v{x}^\top A\v{x}
+	\]
+	We can see that
+	\begin{align*}
+		f(\v{x}) &= \v{x}^\top A\v{x}\\
+		&= \begin{bmatrix}
+			x_1&\cdots&x_n
+		\end{bmatrix}\begin{bmatrix}
+			a_{11}&\cdots&a_{1n}\\
+			\vdots&\ddots&\vdots\\
+			a_{m1}&\cdots&a_{mn}
+		\end{bmatrix}\begin{bmatrix}
+			x_1\\\vdots\\x_n
+		\end{bmatrix}\\
+		&= \sum_i\sum_j x_ia_{ij}x_j
+	\end{align*}
+	Since all terms that contain $x_i$ is
+	\[
+\sum_{j\neq i}x_ia_{ij}x_j+\sum_{j\neq i}x_ja_{ji}x_i+x_i^2a_ii
+	\]
+	We know that
+	\[
+\frac{\partial f}{\partial x_i} = \sum_j(a_{ij}+a{ji})x_j
+	\]
+	Therefore the gradient of this function f is
+	\[
+\nabla f(\v{x}) = (A+A^\top)\begin{bmatrix}
+	x_1\\\vdots\\x_n
+\end{bmatrix} = (A+A^\top)\v{x}
+	\]
+	The hessian is 
+	\[
+\nabla^2 f(\v{x}) = A+A^\top
+	\]
+\end{example}
+
+\begin{theorem}[The Main Theorem]
+	Let $f:\mathbb{R}^n\rightarrow\mathbb{R}$ and f is differentiable everywhere. Consider the optimization problem subject to
+	\[
+\argmin_{\v{x},\;\v{x}\in \Omega} f(\v{x})
+	\]
+Where $\Omega$ is an open set in $\mathbb{R}^n$
+
+Then if $\v{x}^*$ is an optimal solution, then
+\[
+\frac{df}{dx}(x^*) = 0
+\]
+Note that the converse is not necessarily true.
+\end{theorem}
+
+% section vector_calculus (end)

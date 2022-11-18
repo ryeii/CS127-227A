@@ -6,4 +6,13 @@
 \contentsline {subsection}{\numberline {1.e}Principal Component Analysis}{7}{subsection.35}%
 \contentsline {subsection}{\numberline {1.f}Singular Value Decomposition}{8}{subsection.38}%
 \contentsline {subsection}{\numberline {1.g}Low-Rank Approximation}{10}{subsection.45}%
+\contentsline {section}{\numberline {2}Vector Calculus}{13}{section.60}%
+\contentsline {section}{\numberline {3}Regression}{16}{section.75}%
+\contentsline {subsection}{\numberline {3.a}Sensitivity}{16}{subsection.76}%
+\contentsline {subsection}{\numberline {3.b}Shift property of eigenvalues}{17}{subsection.81}%
+\contentsline {subsection}{\numberline {3.c}Ridge Regression}{17}{subsection.84}%
+\contentsline {subsection}{\numberline {3.d}Tikhonov regularization}{17}{subsection.87}%
+\contentsline {subsection}{\numberline {3.e}Probablistic perspective}{18}{subsection.90}%
+\contentsline {section}{\numberline {4}Convexity}{21}{section.97}%
+\contentsline {subsection}{\numberline {4.a}Convex Sets}{21}{subsection.98}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

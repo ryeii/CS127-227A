@@ -1,0 +1,225 @@
+\section{Regression} % (fold)
+\label{sec:regression}
+
+\subsection{Sensitivity} % (fold)
+\label{sub:sensitivity}
+
+\begin{definition}[problem statement]
+	Consider optimization problem
+	\[
+A\v{x} = \v{y}
+	\]
+	Under the special case that $A\in\mathbb{R}^{n*n}$ and is invertible. Now we apply a change to y such that $\v{y} \rightarrow \v{y}+\delta\v{y}$. Because of this, $\v{x} \rightarrow \v{x}+\delta\v{x}$. How big is $\delta\v{x}$?
+\end{definition}
+
+\begin{theorem}[condition number]
+	The value we are interested in is $\frac{\| \delta \v{x}\|_2}{\|\v{x}\|_2}$. To investigate this value, we transform the equation such that
+	\begin{align*}
+	A(\v{x}+\delta\v{x}) &= \v{y}+\delta\v{y}\\
+		A \delta\v{x} &= \delta\v{y}\\
+		\delta\v{x}&=A^{-1}\delta\v{y}\\
+		\|\delta\v{x}\|_2 &= \|A^{-1}\delta\v{y}\|_2
+	\end{align*}
+	Recall that
+	\[
+\|A\|_2 = \max_{\|y\|_2=1}\|A\v{y}\|_2 = \max_{y}\frac{\|A\v{y}\|_2}{\|y\|_2} = \sigma_{max}
+	\]
+	Therefore by the definition of the spectral norm,
+	\[
+\|\delta\v{x}\|_2 = \|A^{-1}\delta\v{y}\|_2 \le \|A^{-1}\|_2\|\delta\v{y}\|_2
+	\]
+	This gives us an upperbound of the solution. To find the lowerbound,
+	\begin{align*}
+		A\v{x}&=\v{y}\\
+		\|\v{y}\|_2 &= \|A\v{x}\|_2 \le \|A\|_2\|\v{x}\|_2\\
+		\|\v{x}\|_2 &\ge \frac{\|\v{y}\|_2}{\|A\|_2}
+	\end{align*}
+	Combining these two inequalities gives
+	\begin{align*}
+		\frac{\| \delta\v{x}\|_2}{\|\v{x}\|_2} &\le \frac{\|A^{-1}\|_2\| \delta\v{y}\|_2}{\|\v{y}\|_2/\|A\|_2}\\ 
+		&\le \|A\|_2\|A^{-1}\|_2 \frac{\| \delta\v{y}\|_2}{\|\v{y}\|_2}\\
+		&\le \left(\frac{\sigma_{max}}{\sigma_{min}}\right)\frac{\| \delta\v{y}\|_2}{\|\v{y}\|_2}
+	\end{align*}
+	The term $\frac{\sigma_{max}}{\sigma_{min}}$ is called the condition number of a matrix. If the condition number is large, a small change in y would cause a large change in x.
+\end{theorem}
+
+% subsection sensitivity (end)
+
+\subsection{Shift property of eigenvalues} % (fold)
+\label{sub:shift_property_of_eigenvalues}
+
+\begin{theorem}[Shift property of eigenvalues]
+	Consider matrix A. We add a diagonal matrix to A and change it to $A+\lambda I$. Then for $\lambda_1$ and $\v{v}_1$ be the first eigenpair of A,
+	\[
+(A+\lambda I)\v{v}_1 = A\v{v}_1+\lambda\v{v} = \lambda_1\v{v}_1+\lambda\v{v}_1=(\lambda_1+\lambda)\v{v}
+	\]
+	The eigenvalue of the new matrix $A+\lambda I$ is shifted by $\lambda$, but its eigenvector remain unchanged.
+\end{theorem}
+
+% subsection shift_property_of_eigenvalues (end)
+
+\subsection{Ridge Regression} % (fold)
+\label{sub:ridge_regression}
+
+\begin{theorem}[Ridge regression]
+	Consider the optimization problem
+	\[
+\min_{\v{x}}\|A\v{x}-\v{b}\|^2+\lambda^2\|\v{x}\|_2^2
+	\]
+	Where $\lambda^2\|\v{x}\|_2^2$ is called the \textbf{regularizer}. We have
+	\begin{align*}
+		f(\v{x}) &= (A\v{x}-\v{b})^\top(A\v{x}-\v{b})+\lambda^2\v{x}^\top\v{x}\\
+		&= \v{x}^\top A^\top A\v{x}-\v{x}^\top A^\top \v{b}-\v{b}^\top A\v{x}+\lambda^2\v{x}^\top\v{x}+\v{b}^\top\v{b}
+	\end{align*}
+	The gradient of f is 
+	\[
+\nabla f(\v{x}) = 2A^\top A\v{x}-2(\v{b}^\top A)^\top +2 \lambda^2\v{x}
+	\]
+	Setting the gradient to zero gives us
+	\begin{align*}
+		(A^\top A+\lambda^2I)\v{x}^* &= A^\top\v{b}\\
+\v{x}^* &= (A^\top A+\lambda^2 I)^{-1}A^\top\v{b}
+	\end{align*} 
+
+	Ridge regression has two interpretations.
+	\begin{itemize}
+		\item We want to shift the eigenvalues of A to limit the condition number so it is not too large.
+		\item Without the regularizer, the predicted coefficient of the polynomial tend to be really large ($10^6$-level large). The regularizer integrated the size of x into the minimizing terms and controls the size of the predicted value so that it is not insanely large.
+	\end{itemize}
+
+	Note: the solution to the ridge regression is \textbf{not} the same as the solution to OLS. In general, these two solutions are distinct.
+\end{theorem}
+
+% subsection ridge_regression (end)
+
+\subsection{Tikhonov regularization} % (fold)
+\label{sub:tikhonov_regularization}
+
+\begin{definition}[Tikhonov regularization]
+	Consider data $A\v{x} = \v{b}$. We decide to add weights $W_1$ to the data points such that the weights represents the "importance" or "confidence." We then add some new data $W_2$ to A and a corresponding $\v{x}_0$ to $\v{b}$. With the additional information, the original data becomes:
+	\[
+W_1\begin{bmatrix}
+	A \\ W_2
+\end{bmatrix}\v{x} = \begin{bmatrix}
+	\v{b} \\ \v{x}_0
+\end{bmatrix}
+	\]
+	where $W_1$ and $W_2$ are matrices. The optimization problem becomes:
+	\[
+\min_{\v{x}}\|W_1(A\v{x}-\v{b})\|_2^2+\|W_2(\v{x}-\v{x}_0)\|_2^2
+	\]
+	Such problem is called Tikhonov regression.
+\end{definition}
+
+% subsection tikhonov_regularization (end)
+
+\subsection{Probablistic perspective} % (fold)
+\label{sub:probablistic_perspective}
+
+\begin{definition}[Problem statement]
+	Consider model
+	\[
+y_i = g(x_i)+z_i
+	\]
+	Where $z_i$ is noise. We have some information about the noise such that 
+	\[
+z_i \sim N(0,\sigma_i^2) \rightarrow f(z_i) = \frac{e^{-z_i^2/2\sigma_i^2}}{\sqrt{2\pi}\sigma_i}
+	\]
+	This model is our data points. \textbf{Assume} the model is linear, i.e. $g(\v{x}_i) = \v{x}_i^\top\v{w}$. In this context, we can call $\v{w}$ as our "model". We can rewrite the original equation to
+	\[
+\begin{bmatrix}
+	y_1\\\vdots\\y_n
+\end{bmatrix} = \begin{bmatrix}
+	\cdots&\v{x}_1^\top&\cdots\\
+	&\vdots&\\
+	\cdots&\v{x}_n^\top&\cdots
+\end{bmatrix}\v{w}+\begin{bmatrix}
+	z_1\\\vdots\\z_n
+\end{bmatrix}
+	\]
+	such that $\v{y}\approx X\v{w}$. We could solve this problem by OLS, but OLS does not count into consideration the information we know about the noise and thus gives suboptimal solution. Is there a better way to choose $\v{w}$?
+\end{definition}
+
+\begin{theorem}[Maximum Likelihood estimation]
+	Goal: find $\v{w}$ that makes observed data most likely, i.e.
+	\[
+\argmax_{\v{w}_0} f(Y_1 = y_1,\cdots,Y_n=y_n|\v{w} = \v{w}_0)
+	\]
+	Assume $z_i$ i.i.d. Then we can rewrite the original problem into
+	\[
+\argmax_{\v{w}_0}\prod_{i=1}^nf(Y_i=y_i|\v{w} = \v{w}_0)
+	\]
+	Note that
+	\begin{align*}
+		f(Y_i=y_i|\v{w}=\v{w}_0) &= f(\v{x}_i^\top\v{w}_0+z_i=y_i|\v{w}=\v{w}_0\\
+		&= f(z_i=y_i-\v{x}_i^\top\v{w}_0|\v{w}=\v{w}_0)\\
+		&= \frac{e^{\frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2}}}{\sqrt{2\pi}\sigma_i}
+	\end{align*}
+	Therefore
+	\begin{align*}
+	\argmax_{\v{w}_0}\prod_{i=1}^nf(Y_i=y_i|\v{w} = \v{w}_0) &= \argmax_{\v{w}_0}\prod_{i=1}^n\frac{e^{\frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2}}}{\sqrt{2\pi}\sigma_i}\\
+		&= \argmax_{\v{w}_0} \frac{1}{(\sqrt{2\pi})^n\prod_{i=1}^n\sigma_i} \prod_{i=1}^ne^{\frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2}}\\
+		&= \argmax_{\v{w}_0} \frac{1}{(\sqrt{2\pi})^n\prod_{i=1}^n\sigma_i} \exp\left\{-\sum_{i=1}^n\frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2}\right\}\\
+		&= \argmax_{\v{w}_0} -\sum_{i=1}^n\frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2}\\
+		&= \argmin_{\v{w}_0} \sum_{i=1}^n\frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2}\\
+		&= \argmin_{\v{w}_0} \|S(X\v{w}_0-\v{y})\|^2_2
+	\end{align*}
+	Where
+	\[
+S = \begin{bmatrix}
+			\sqrt{\frac{1}{2 \sigma_1^2}} &&\\
+			&\ddots&\\
+			&&\sqrt{\frac{1}{2 \sigma_n^2}}
+	\end{bmatrix}
+	\]
+\end{theorem}
+
+\begin{theorem}[Maximum a posteriori estimation (MAP)]
+	Based on the problem stated in MLE, what if we have a prior on $\v{w}$? Again, we have
+	\[
+y_i = g(x_i)+z_i
+	\]
+	\[
+z_i \sim N(0,\sigma_i^2) \rightarrow f(z_i) = \frac{e^{-z_i^2/2\sigma_i^2}}{\sqrt{2\pi}\sigma_i}
+	\]
+	In addition,
+	\[
+w_i \sim N(\mu_i,\rho_i^2)
+	\]
+	i.e.
+	\[
+\v{w} \sim N(\v{\mu}, \Sigma_{\v{w}}) \;\; s.t.\;\; \Sigma_{\v{w}} = \begin{bmatrix}
+	\rho_1^2 &&\\
+	&\ddots&\\
+	&&\rho_n^2
+\end{bmatrix}
+	\]
+	Goal: find the most likely $\v{w}$ given data $y_1, \cdots, y_n$, i.e.
+	\[
+\argmax_{\v{w}} f(\v{w}|\v{Y} = \v{y})
+	\]
+	By the Bayes theorem,
+	\[
+	f(\v{w}|\v{Y} = \v{y}) = \frac{f(\v{Y}=\v{y}|\v{w})f{\v{w}}}{f{\v{Y}}}
+	\]
+	Hence
+	\begin{align*}
+		\argmax_{\v{w}} f(\v{w}|\v{Y} = \v{y}) &= \argmax_{\v{w}} f(\v{Y}=\v{y}|\v{w})f(\v{w})\\
+		&= \argmax_{\v{w}} \left(\prod_{i=1}^nf(Y=y_i|\v{w})\right)f(\v{w})
+	\end{align*}
+	Borrowing the calculation we did in MLE,
+	\begin{align*}
+		\argmax_{\v{w}} f(\v{w}|\v{Y} = \v{y}) &= \argmax_{\v{w}} \prod_{i=1}^n
+		\frac{\exp\left\{\frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2}\right\}}{\sqrt{2\pi}\sigma_i}\frac{\exp\left\{-(\v{w}-\v{\mu})^\top\Sigma_W^{-1}(\v{w}-\v{\mu})\right\}}{(\sqrt{2\pi})^n(\prod\rho_i)}\\
+		&= \argmax_{\v{w}} \exp\left\{\sum_{i=1}^n \frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2} -(\v{w}-\v{\mu})^\top\Sigma_W^{-1}(\v{w}-\v{\mu}) \right\}\\
+		&= \argmax_{\v{w}} \sum_{i=1}^n \frac{-(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2} -(\v{w}-\v{\mu})^\top\Sigma_W^{-1}(\v{w}-\v{\mu})\\
+		&= \argmin_{\v{w}} \sum_{i=1}^n \frac{(y_i-\v{x}_i^\top\v{w}_0)^2}{2\sigma_i^2} +(\v{w}-\v{\mu})^\top\Sigma_W^{-1}(\v{w}-\v{\mu})\\
+		&= \argmin_{\v{w}} \|S(X\v{w}_0-\v{y})\|^2_2 + \|\sqrt{\Sigma_W^{-1}}(\v{w}-\v{\mu})\|_2^2
+	\end{align*}
+	For example, if some $\rho$'s are large (note that $\rho$'s are the variances of the w's), you do not need to care too much about keeping w and $\mu$ close in their values. But if $\rho$'s are small, than differences in values of w and $\mu$ are going to have a large impact (Therefore you should put a high weight on keeping w and $\mu$ similar).
+
+\end{theorem}
+
+% subsection probablistic_perspective (end)
+
+% section regression (end)
