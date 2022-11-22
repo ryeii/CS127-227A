@@ -70,7 +70,7 @@ We conclude that the solution for Ordinary Least Squares (OLS) is
 \begin{definition}[Norm]
 	A Norm is defined as
 	\[
-	f:= \mathbf{X}\rightarrow\mathbb{R}
+	f: \mathbf{X}\rightarrow\mathbb{R}
 	\]
 	For vector space $\mathbf{X}$.
 
@@ -91,9 +91,9 @@ Generally, l-p norm is defined as
 \]
 Commonly used norms:
 \begin{itemize}
-	\item $\|\v{x}\|_1 := \sum|x_i|$
-	\item $\|\v{x}\|_2 := \sqrt{\sum|x_i|^2}$
-	\item $\|\v{x}\|_\infty := \max|x_i|$
+	\item $\|\v{x}\|_1 = \sum|x_i|$
+	\item $\|\v{x}\|_2 = \sqrt{\sum|x_i|^2}$
+	\item $\|\v{x}\|_\infty = \max|x_i|$
 \end{itemize}
 
 \end{definition}
@@ -226,7 +226,7 @@ A(\v{y}+\v{z}) = 0 + A\v{z} = \v{b}
 	\]
 \end{theorem}
 
-\begin{theorem}
+\begin{remark}
 	For a diagonalizable n*n matrix A that has n linearly independent eigenvectors, A can be factorized as
 	\[
 A = U\Lambda U^\top
@@ -240,7 +240,7 @@ A = U\Lambda U^\top
 \end{bmatrix}
 	\]
 	Therefore it is also called an eigenvalue decomposition.
-\end{theorem}
+\end{remark}
 
 % subsection symmetric_matrices (end)
 
@@ -281,22 +281,7 @@ A = \sigma_1\v{u}_1\v{v}^\top_1 + \sigma_1\v{u}_1\v{v}^\top_1 + \cdots + \sigma_
 	\]
 \end{theorem}
 
-\begin{remark}[geometric interpretation of SVD]
-	Consider linear transformation on vector $\v{x}$ given by matrix A, s.t.
-	\[
-	A\v{x} = U \Sigma V^\top \v{x}
-	\]
-	SVD helps breaking the transformation into three smaller steps, i.e.
-	\begin{itemize}
-		\item orthonormal transformation (rotate/reflect) by V,
-		\item scaling by $\Sigma$,
-		\item orthonormal transformation by U.
-	\end{itemize}
-	The following illustration is an example of a 2D transformation $A\v{x}$. It shows the decomposed linear transformation through the unit circles relative to the original unit circle at different stages of the transformation.\\
-	\includegraphics[scale=0.7]{img/svd1.png}
-\end{remark}
-
-\begin{theorem}[Proof of SVD]
+\begin{proof}
 	For $A\in\mathbb{R}^{m*n}$, consider symmetric matrix $A^\top A$ that has eigenvalues $\lambda_1 \cdots \lambda_r > 0$ with corresponding eigenvectors $v_1 \cdots v_r$ and $\lambda_{r+1} \cdots \lambda_n = 0$. Then we know that
 	\[
 	A^\top A\v{v}_i = \lambda_i\v{v}_i
@@ -316,7 +301,6 @@ A\v{v}_i = \sigma_i\v{u}_i \;\; i\le r
 	for some vector $\v{u}_i$. \\ 
 
 	\textbf{Claim.} $\v{u}_i$ are orthonormal.
-	\begin{proof}
 	\begin{align*}
 		\v{u}_i^\top\v{u}_j &= \frac{(A\v{v}_i)^\top}{\sigma_i}\frac{(A\v{v}_j)}{\sigma_j} \\
 		&= \frac{1}{\sigma_i \sigma_j}\v{v}_i^\top A^\top A \v{v}_j && A^\top A\v{v}_j = \lambda_j\v{v}_j\\
@@ -328,7 +312,6 @@ A\v{v}_i = \sigma_i\v{u}_i \;\; i\le r
 		\end{array}
 	\end{align*}
 	Therefore $\v{u}_i$ are orthonormal.
-	\end{proof}
 	Recall that A has rank r, we let
 	\[
 V_r = V = \begin{bmatrix}
@@ -352,10 +335,25 @@ V_r = V = \begin{bmatrix}
 	A&= U \Sigma V^\top
 	\end{align*}
 	Since V orthonormal and $V^{-1}=V^\top$
-\end{theorem}
+\end{proof}
+
+\begin{remark}[geometric interpretation of SVD]
+	Consider linear transformation on vector $\v{x}$ given by matrix A, s.t.
+	\[
+	A\v{x} = U \Sigma V^\top \v{x}
+	\]
+	SVD helps breaking the transformation into three smaller steps, i.e.
+	\begin{itemize}
+		\item orthonormal transformation (rotate/reflect) by V,
+		\item scaling by $\Sigma$,
+		\item orthonormal transformation by U.
+	\end{itemize}
+	The following illustration is an example of a 2D transformation $A\v{x}$. It shows the decomposed linear transformation through the unit circles relative to the original unit circle at different stages of the transformation.\\
+	\includegraphics[scale=0.7]{img/svd1.png}
+\end{remark}
 
 % subsection singular_value_decomposition (end)
-
+\newpage
 \subsection{Low-Rank Approximation} % (fold)
 \label{sub:low_rank_approximation}
 
@@ -437,8 +435,11 @@ trace(A) = \sum_{i=1}^na_{ii}
 \end{align*}
 \end{remark}
 
-\begin{remark}[Proof of Eckart-Young-Mirsky]
+\newpage
+Proof of Eckart-Young-Mirsky
+
 Goal: B: rank(k), $\|A-B\|_F \ge \|A-A_k\|_F$
+
 \begin{proof}
 \[
 \|A-A_k\|_F = \|\sum_{i=k+1}^n \sigma_i\v{u}_i\v{v}_i\|_F = \sqrt{\sum_{i=k+1}^n \sigma_i^2}
@@ -486,7 +487,6 @@ Finally, bring the above result back to the previous equation gives us
 \]
 as desired.
 \end{proof}
-\end{remark}
 
 % subsection low_rank_approximation (end)
 

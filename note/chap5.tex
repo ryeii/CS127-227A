@@ -1,0 +1,40 @@
+\section{Gradient Descent} % (fold)
+\label{sec:gradient_descent}
+
+\begin{definition}[Gradient Descent]
+	Gradient Descent is an approach to unconstrained optimization problems. The basic idea is to nudge the function in the right direction by a little bit in every step, and after a lot of steps the function will arrive at a local minimum. Formally, for a step size s and a direction $\v{v}$,
+	\[
+f(\v{x}+s\v{v}) \approx f(\v{x})+s<\nabla f(\v{x}), \v{v}>
+	\]
+	Recall Cauchy-Schwartz, the magnitude of $<\nabla f(\v{x}), \v{v}>$ is maximized if $\v{v}$ is aligned with $\nabla f(\v{x})$. We want to minimize the inner product while maximize its magnitude so the function steps towards the minimum at the fastest rate, hence we choose
+	\[
+\v{v} = -\nabla f(\v{x})
+	\]
+	The formal algorithm for gradiant descent is defined as follows. Let $\v{x}$ be the parameter of function f. At step k,
+	\[
+\v{x}_{k+1} = \v{x}_k -\eta\nabla f(\v{x}_k)
+	\]
+	Where $\v{x}_0$ is the initial point and $\eta$ is the stepsize.
+\end{definition}
+
+\begin{example}[GD on LS]
+	Let $f(\v{x}) = \|A\v{x}-\v{b}\|_2^2$. It has a direct solution of $\v{x}^* = (A^\top A)^{-1}A^\top\v{b}$. If A is a n*n matrix, the runtime of computing the direct solution is at least $O(n^3)$ (taking a matrix inverse is approx. $O(n^3)$). It is computationally cheaper to use gradient descent. Thus,
+	\[
+\nabla f(\v{x}) = 2A^\top(A\v{x}-\v{b})
+	\]
+\begin{align*}
+	\v{x}_{k+1} &= \v{x}_k -\eta\nabla f(\v{x}_k)\\
+	&= \v{x}_k - \eta 2A^\top(A\v{x}-\v{b})\\
+	\v{x}_{k+1} &= (I-2\eta A^\top A)\v{x}_k + 2\eta A^\top\v{b}
+\end{align*}
+	Next we need to prove that this algorithm will converge. The following is one of the ways to prove convergence. The difference between optimal value and the k-step value is
+	\begin{align*}
+		\v{x}_{k+1} - (A^\top A)^{-1}A^\top\v{b} &= (I-2\eta A^\top A)\v{x}_k + 2\eta A^\top\v{b} - (A^\top A)^{-1}A^\top\v{b}\\
+		&= (I-2\eta A^\top A)\v{x}_k + 2\eta(A^\top A)(A^\top A)^{-1}A^\top\v{b}-(A^\top A)^{-1}A^\top\v{b}\\
+		&= (I-2\eta A^\top A)\v{x}_k + (2\eta A^\top A-I)(A^\top A)^{-1}A^\top\v{b}\\
+		&= (I-2\eta A^\top A)(\v{x}_k - (A^\top A)^{-1}A^\top\v{b})
+	\end{align*}
+	Hence if the absolute values of the eigenvalues of $I-2\eta A^\top A$ are strictly less than 1, GD converges for LS.
+\end{example}
+
+% section gradient_descent (end)

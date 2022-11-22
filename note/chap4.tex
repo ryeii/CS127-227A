@@ -4,8 +4,242 @@
 \subsection{Convex Sets} % (fold)
 \label{sub:convex_sets}
 
+\begin{definition}[convex combination]
+	Consider $\v{x}_i$,
+	\[
+\sum_{i=1}^n \lambda_i\v{x}
+	\]
+	is a convex combination of $\v{x}$ if 
+	\[
+\lambda_i\ge 0 \;\; \text{and} \;\; \sum_{i=1}^n \lambda_i = 1
+	\]
+\end{definition}
 
+\begin{definition}[convex set]
+	A set C is convex if the line segment joining any two points in the set is contained in the set.
+\end{definition}
+
+\begin{example}
+	Consider C a vector space. If C is convex then
+	\[
+\theta \v{x}_i + (1-\theta)\v{x}_2 \in C \;\;\forall \theta
+	\]
+	if $\v{x}_1, \v{x}_2 \in C$ and $\theta\in[0,1]$.
+\end{example}
+
+\begin{example}
+	Let
+	\[
+C=\{\v{x}\;|\;\v{a}^\top\v{x}=b\}	
+	\]
+	Note that C is a hyperplane. It can be rewritten into
+	\begin{align*}
+		\v{a}(\v{x}-\v{x}_0) &= 0\\
+		\v{a}^\top\v{x} &= \v{a}^\top\v{x}_0 =b
+	\end{align*}
+	To check wheter C is convex, consider $\v{x}_1,\v{x}_2\in C$ and let
+	\[
+\v{x}_3 = \theta\v{x}_1+(1-\theta)\v{x}_2
+	\]
+	We know that
+	\[
+\v{a}^\top\v{x}_3 = \theta\v{a}^\top\v{x}_1 + (1-\theta)\v{a}^\top\v{x}_2 = b
+	\]
+	Therefore $\v{x}_3$ belongs to C and C is convex.
+\end{example}
+
+\begin{remark}
+	A hyperplane (a plane which's dimension is 1 less than the dimension of its ambient space) divides the space into two half spaces. The set
+	\[
+\{\v{x}\;|\;\v{a}^\top\v{x}\ge b\}
+	\]
+	defines a hyperplane, where $\v{a}$ is perpendicular to all vectors on this plane. This hyperplane naturally generates a counter part
+	\[
+\{\v{x}\;|\;\v{a}^\top\v{x}\le b\}
+	\]
+	Example:
+	\[
+P = \{\v{x}\;|\;\v{a}^\top(\v{x}-\v{x}_0)\ge 0\} \;\; N = \{\v{x}\;|\;\v{a}^\top(\v{x}-\v{x}_0)\le 0\}
+	\]
+	devides the space into two parts (P for positive and N for negative).
+\end{remark}
+
+\begin{example}
+	Consider
+	\[
+P = \{A\;|\;A\in\mathbb{S}^n,\;\;A\text{ is PSD}\}
+	\]
+	Recall that A is PSD iff
+	\[
+\v{x}^\top A\v{x} \ge 0 \;\;\forall\v{x}\in\mathbb{R}^n
+	\]
+	Is P convex? Let
+	\[
+A_1,\;A_2 \in P\;\;and\;\;A_3 = \theta A_1+(1-\theta)A_2
+	\]
+	Then
+	\begin{align*}
+		\v{x}^\top A_3\v{x} = \theta(\v{x}^\top A_1\v{x}) + (1-\theta)\v{x}^\top A_2\v{x} \ge 0\\
+		\implies A_3\in P
+	\end{align*}
+	Therefore P is convex.
+\end{example}
+
+\begin{remark}
+	Linear transformations always preserve convexity.
+\end{remark}
+
+\begin{theorem}[separating hyperplane theorem]
+	Let C, D be convex sets and $C \cap D = \emptyset$. Then there exists hyperplane $\v{a}^\top\v{x} = b$ separating two sets such that
+	\begin{align*}
+		\forall \v{x}\in C\;\; \v{a}^\top\v{x}\ge b\\
+		\forall \v{x}\in D\;\; \v{a}^\top\v{x}\le b\\
+	\end{align*}
+\end{theorem}
+
+Proof: TODO
 
 % subsection convex_sets (end)
+
+\subsection{Convex Functions} % (fold)
+\label{sub:convex_functions}
+
+\begin{definition}[convex functions]
+	Let
+	\[
+f:\mathbb{R}^n\rightarrow\mathbb{R}
+	\]
+	Function f is convex if the domain of f is a convex set and
+	\[
+f(\theta\v{x}+(1-\theta)\v{y})\le \theta f(\v{x})+(1-\theta)f(\v{y})\;\; 0\le\theta\le1
+	\]
+	The above inequality is called \textbf{Jensen's Inequality}. Here is an example of a convex function that visualizes the Jensen's Inequality.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+scale = 0.6,
+xmin = 0, xmax = 4,
+ymin = 0, ymax = 10,
+axis lines* = left,
+xtick = {0}, ytick = \empty,
+clip = false,
+]
+% Graph
+\addplot[domain = 0:10, restrict y to domain = 0:10, samples = 400, color = red]{(x-2)^2+2};
+
+\addplot[color = black, dashed, thick] coordinates {(1, 3) (1, 0)};
+\addplot[color = black, dashed, thick] coordinates {(3.5, 4.25) (3.5, 0)};
+\addplot[color = black, dashed, thick] coordinates {(3.5, 4.25) (1, 3)};
+\addplot[color = black, dashed, thick] coordinates {(2, 0) (2, 3.5)};
+
+% Points
+\filldraw (3.5, 4.25) circle[radius=1.5pt];
+\filldraw (1, 3) circle[radius=1.5pt];
+\filldraw (2, 2) circle[radius=1.5pt];
+\filldraw (2, 3.5) circle[radius=1.5pt];
+\node[right=2pt of {(3.5, 4.25)}, outer sep=2pt] {$f(\v{y})$};
+\node[left=2pt of {(1, 3)}, outer sep=2pt] {$f(\v{x})$};
+\node[above=2pt of {(2, 4)}, outer sep=2pt] {$\theta f(\v{x})+(1-\theta)f(\v{y})$};
+\node[below=2pt of {(2, 0))}, outer sep=2pt] {$f(\theta\v{x}+(1-\theta)\v{y})$};
+\node[above right=2pt of {(4.7, 8))}, outer sep=2pt] {$f$};
+
+% Labels
+\node [right] at (current axis.right of origin) {$x$};
+\node [above] at (current axis.above origin) {$y$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+If the "cord" is always above the function, the function is \textbf{convex}. If the "cord" is always below the function, the function is \textbf{concave}.
+
+\end{definition}
+
+\begin{theorem}
+	If a function f is convex, any local minimum is the global minimum.
+\end{theorem}
+
+\begin{definition}[Epigraph]
+	The epigraph of a function f is defined as
+	\[
+Epi f = \{(x, t)\;|\;x\in dom f \;\; f(x) \le t\}
+	\]
+	f is a convex function $\iff$ Epi f is a convex set.
+\end{definition}
+
+\begin{theorem}[First-order condition]
+	Define $f:\mathbb{R}^n\rightarrow\mathbb{R}$ a differentiable function. Then f is convex iff
+	\[
+f(\v{y})\ge f(\v{x})+\nabla f(\v{x})^\top(\v{y}-\v{x}) \;\; \forall \v{x}, \v{y}\in dom f\;\;0\le\theta\le1
+	\]
+\end{theorem}
+
+\begin{remark}[Implication of the FOC]
+	If $\nabla f(\v{x}_*) = 0$ and f is convex, then
+	\begin{align*}
+		f(\v{y}) &\ge f(\v{x})+0(\v{y}-\v{x})\\
+		f(\v{y}) &\ge f(\v{x})
+	\end{align*}
+	For all y in the domain, which means that $\v{x}_*$ is a global minimum!!
+\end{remark}
+
+\begin{definition}[Second-order condition]
+	Let $f:\mathbb{R}^n\rightarrow\mathbb{R}$ who's domain is convex and is twice-differentiable. f is convex iff
+	\[
+	\nabla^2f(\v{x}) \succeq 0
+	\]
+	In another word, $\nabla^2f(\v{x})$ is positive semi-definite.
+\end{definition}
+
+\begin{definition}[Strict Convexity]
+	Dom f convex. For all x y in domain, f is strictly convex iff
+	\[
+f(\theta\v{x}+(1-\theta)\v{y}) < \theta f(\v{x})+(1-\theta)f(\v{y})
+	\]
+	FOC:
+	\[
+f(\v{y}) > f(\v{x})+\nabla f(\v{x})^\top(\v{y}-\v{x}) \;\; \forall \v{x}, \v{y}\in dom f\;\; 0<\theta<1
+	\]
+	SOC:
+	\[
+\nabla^2f(\v{x}) \succ 0
+	\]
+\end{definition}
+
+\begin{remark}
+	If f is a stright line, f is both convex and concave, but not strictly convex.
+\end{remark}
+
+\begin{definition}[Strong Convexity]
+	Dom f convex. For all x y in domain, f is $\mu$-strongly convex iff
+	\[
+f(\v{y})\ge f(\v{x})+\nabla f(\v{x})^\top(\v{y}-\v{x}) + \frac{\mu}{2}\|\v{y}-\v{x}\|^2
+	\]
+\end{definition}
+
+\begin{remark}[implication of strong convexity]
+	Recall that by Taylor's theorem, for $f(\v{x}):=\mathbb{R}^n\rightarrow\mathbb{R}$, the derivative of f is
+	\[
+f(\v{y}) \approx f(\v{x})+\nabla f^\top(\v{y}-\v{x}) + \frac{1}{2}(\v{y}-\v{x})^\top\nabla^2f(\v{y}-\v{x})
+	\]
+	If we let $\mu I = \nabla^2f$, we have
+	\[
+\frac{\mu}{2}\|\v{y}-\v{x}\|^2 = \frac{1}{2}(\v{y}-\v{x})^\top\mu I(\v{y}-\v{x})
+	\]
+	Thus the implication of strong convexity is that the hessian of f is at least $\mu I$.
+\end{remark}
+
+\begin{remark}
+	Strong convexity $\implies$ strict convexity $\implies$ convexity
+\end{remark}
+
+\begin{remark}
+	For matrices A and B, 
+	\[
+	A \succeq B \implies A-B\succeq 0
+	\]
+\end{remark}
+
+% subsection convex_functions (end)
 
 % section convexity (end)
