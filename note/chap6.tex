@@ -38,7 +38,7 @@ L(\v{x},\v{\lambda},\v{\nu}) = f_0(\v{x})+\sum_{i=1}^m \lambda_if_i(\v{x})+\sum_
 \end{theorem}
 Proof of property No. 4: TODO
 
-\begin{example}
+\begin{example}[Duality on LS]
 	Let $A\in\mathbb{R}^{m*n}$, $m<n$. Problem
 	\[
 \min \v{x}^\top\v{x} = \v{p}^*
@@ -72,6 +72,15 @@ g(\v{\nu}) = \min_{\v{x}}L(\v{x},\v{\nu})
 	\[
 \max_{\v{\nu}}g(\v{\nu})
 	\]
+	Since g concave, we take its gradient and set to zero:
+	\begin{align*}
+		\nabla_{\v{\nu}} g(\v{\nu}) &= -\frac{1}{4}2AA^\top\v{\nu}-\v{b} = 0\\
+		\v{\nu}^* &= -2(AA^\top)^{-1}\v{b}
+	\end{align*}
+	Thus
+	\[
+\v{x}^* = -\frac{1}{2}A^\top(-2(AA^\top)^{-1}\v{b}) = A^\top(AA^\top)^{-1}\v{b}
+	\]
 \end{example}
 
 \begin{definition}[Dual]
@@ -101,5 +110,21 @@ d^*\le p^*
 
 % subsection weak_duality (end)
 
+\subsection{Strong Duality} % (fold)
+\label{sub:strong_duality}
+
+\begin{definition}[Strong Duality]
+	If
+	\[
+d^*= p^*
+	\]
+	Like we seen in the Duality on LS example, then it is \textbf{STRONG DUALITY}.
+\end{definition}
+
+\begin{remark}
+	Strong Duality $\implies$ Weak Duality. Weak Duality always holds, while Strong Duality only holds under certain circumstances.
+\end{remark}
+
+% subsection strong_duality (end)
 
 % section duality (end)
