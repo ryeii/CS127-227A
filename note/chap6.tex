@@ -1,6 +1,9 @@
 \section{Duality} % (fold)
 \label{sec:duality}
 
+\subsection{Weak Duality} % (fold)
+\label{sub:weak_duality}
+
 \begin{remark}
 	Gradient Descent works for unconstrained optimization problem on convex functions. It has challenges that the function should be differentiable and convex, and at the same time GD is computationally expensive. 
 
@@ -78,5 +81,25 @@ g(\v{\nu}) = \min_{\v{x}}L(\v{x},\v{\nu})
 	\]
 	Over $\v{\nu}$, this problem is the \textbf{DUAL Problem}. It is a maximization problem of a concave function under linear constrains, thus a \textbf{convex program}.
 \end{definition}
+
+\begin{remark}
+	Properties of the Dual problem:
+	\begin{enumerate}
+		\item \# of variables = \# of constraints of the primal.
+		\item \textbf{Always convex problem even if primal is not! :)}
+	\end{enumerate}
+	By 1, if the data is large but the constaints are few, the Dual problem is an easier problem to solve.
+\end{remark}
+
+\begin{definition}[Weak Duality]
+	Continuing from the definition of lagrangian and duality, if
+	\[
+d^*\le p^*
+	\]
+	Then it is \textbf{WEAK DUALITY}.
+\end{definition}
+
+% subsection weak_duality (end)
+
 
 % section duality (end)
