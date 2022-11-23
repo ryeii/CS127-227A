@@ -1,6 +1,9 @@
 \section{Gradient Descent} % (fold)
 \label{sec:gradient_descent}
 
+\subsection{Introduction to Gradient Descent} % (fold)
+\label{sub:introduction_to_gradient_descent}
+
 \begin{definition}[Gradient Descent]
 	Gradient Descent is an approach to unconstrained optimization problems. The basic idea is to nudge the function in the right direction by a little bit in every step, and after a lot of steps the function will arrive at a local minimum. Formally, for a step size s and a direction $\v{v}$,
 	\[
@@ -36,5 +39,199 @@ f(\v{x}+s\v{v}) \approx f(\v{x})+s<\nabla f(\v{x}), \v{v}>
 	\end{align*}
 	Hence if the absolute values of the eigenvalues of $I-2\eta A^\top A$ are strictly less than 1, GD converges for LS.
 \end{example}
+
+\begin{example}[GD on LS continued]
+	Since we showed in the previous part that
+	\[
+\v{x}_{k+1} - (A^\top A)^{-1}A^\top\v{b} = (I-2\eta A^\top A)^{k+1}(\v{x}_k - (A^\top A)^{-1}A^\top\v{b})
+	\]
+	Where $\eta$ (step size) is a parameter of choice and we want to make sure the absolute values of the eigenvalues of $(I-2\eta A^\top A)$ is strictly less than 1, we should choose an appropriate $\eta$ such that the algorithm converges. 
+\end{example}
+
+% subsection introduction_to_gradient_descent (end)
+
+\subsection{Gradient Descent for $\mu$-strongly convex L-smooth functions} % (fold)
+\label{sub:gradient_descent_for_}
+
+\begin{definition}[Bounds of convex functions]
+	Recall the definition of $\mu$-strongly convex: Dom f convex. For all x y in domain, f is $\mu$-strongly convex iff
+	\[
+f(\v{y})\ge f(\v{x})+\nabla f(\v{x})^\top(\v{y}-\v{x}) + \frac{\mu}{2}\|\v{y}-\v{x}\|^2
+	\]
+	Intuitively, this means that there exists a quadratic function under f such that this quadratic function is the lower-bound of f, hence the gradient of f is changing fast enough. On the other hand, \textbf{L-smooth} means that there exists a quadratic function such that f is upper-bounded by this function, hence the gradient of f is not changing too fast. Formally,
+	\[
+f(\v{y})\le f(\v{x})+\nabla f(\v{x})^\top(\v{y}-\v{x}) + \frac{L}{2}\|\v{y}-\v{x}\|_2^2
+	\]
+\end{definition}
+
+\begin{theorem}
+	Let $f:\mathbb{R}^n\rightarrow\mathbb{R}$ and define optimization problem
+	\[
+\min_{\v{x}\in\mathbb{R}^n}f(\v{x})
+	\]
+	Let $\v{x}_*$ be the optimal solution to the above problem. Then for GD approach
+	\[
+\v{x}_{t+1} = \v{x}_t-\eta\nabla f(\v{x}_t)
+	\]
+	I can choose an $\eta$ such that
+	\[
+\|\v{x}_{t+1}-\v{x}_*\|_2^2 \le (C)^{t+1}\|\v{x}_0-\v{x}_*\|_2^2
+	\]
+\end{theorem}
+
+\begin{lemma}
+	Let f L-smooth, then
+	\[
+\|\nabla f(\v{x})\|_2^2\le 2L(f(\v{x})-f(\v{x}_*))
+	\]
+\end{lemma}
+
+\begin{proof}
+	Since $f(\v{x}_*)$ minimum, we have
+	\[
+f(\v{x}_*) \le f(\v{x})
+	\]
+	And
+	\[
+f(\v{x}_*) \le f(\v{x}-\frac{\nabla f(\v{x})}{L})
+	\]
+Recall the definition of L-smooth:
+\[
+f(\v{y})\le f(\v{x})+\nabla f(\v{x})^\top(\v{y}-\v{x}) + \frac{L}{2}\|\v{y}-\v{x}\|_2^2
+\]
+We choose $f(\v{y}) = f(\v{x}-\frac{\nabla f(\v{x})}{L})$, then
+\begin{align*}
+	f(\v{x}-\frac{\nabla f(\v{x})}{L}) &\le f(\v{x})+\nabla f(\v{x})^\top(-\frac{\nabla f(\v{x})}{L})+\frac{L}{2}\|-\frac{\nabla f(\v{x})}{L}\|_2^2\\
+	&\le f(\v{x})-\frac{1}{L}\|\nabla f(\v{x})\|^2+\frac{1}{2L}\|\nabla f(\v{x})\|_2^2\\
+	&\le f(\v{x})+\frac{1}{2L}\|\nabla f(\v{x})\|_2^2\\
+\end{align*}
+Since $f(\v{x}_*) \le f(\v{x}-\frac{\nabla f(\v{x})}{L})$,
+\begin{align*}
+	f(\v{x}_*) \le f(\v{x})+\frac{1}{2L}\|\nabla f(\v{x})\|_2^2
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+	If f $\mu$-strongly convex,
+	\[
+	\nabla f(\v{x})^\top(\v{x}_*-\v{x}) \ge f(\v{x}) - f(\v{x}_*) + \frac{\mu}{2}\|\v{x}_*-\v{x}\|_2^2 
+	\]
+\end{lemma}
+
+\begin{proof}
+	Recall the definition of $\mu$-strong convexity: Dom f convex. For all x y in domain, f is $\mu$-strongly convex iff
+	\[
+f(\v{y})\ge f(\v{x})+\nabla f(\v{x})^\top(\v{y}-\v{x}) + \frac{\mu}{2}\|\v{y}-\v{x}\|^2
+	\]
+	Let $\v{y} = \v{x}_*$. We have
+	\begin{align*}
+		f(\v{x}_*) &\ge f(\v{x})+\nabla f(\v{x})^\top(\v{x}_*-\v{x}) + \frac{\mu}{2}\|\v{x}_*-\v{x}\|^2\\
+		f(\v{x}_*) - f(\v{x}) - \frac{\mu}{2}\|\v{x}_*-\v{x}\|_2^2 &\ge \nabla f(\v{x})^\top(\v{x}_*-\v{x})\\
+		- f(\v{x}_*) + f(\v{x}) + \frac{\mu}{2}\|\v{x}_*-\v{x}\|_2^2 &\le \nabla f(\v{x})^\top(\v{x}_*-\v{x})
+	\end{align*}
+\end{proof}
+
+Proof of Main Theorem (Theorem 5.5): TODO
+
+% subsection gradient_descent_for_ (end)
+
+\subsection{Introduction to Stochastic Gradient Descent} % (fold)
+\label{sub:introduction_to_stochastic_gradient_descent}
+
+\begin{definition}
+	Let $f:\mathbb{R}^n\rightarrow\mathbb{R}$ and define optimization problem
+	\[
+\min_{\v{x}\in\mathbb{R}^n}f(\v{x})
+	\]
+Assume the function f is of the following form:
+\[
+f(\v{x}) = \sum_{i=1}^m \frac{1}{m}f_i(\v{x})
+\]
+E.g. for least squares problem
+\[
+\frac{1}{2m}\|A\v{x}-\v{b}\|_2^2 = \frac{1}{2m}\sum_{i=1}^m(\v{a}_i^\top\v{x}-\v{b}_i)^2
+\]
+For
+\[
+A = \begin{bmatrix}
+	\cdots & \v{a}_1^\top & \cdots \\
+	&\vdots&\\
+	\cdots & \v{a}_n^\top & \cdots \\
+\end{bmatrix}
+\]
+To calculate the solution of such problem using gradient descent would cost too much computation time (order n time complexity to calculate n losses). Thus instead of computing all of the losses, we choose one component of the gradient in each step.
+\[
+\v{x}_{k+1} = \v{x}_k-\eta_k\nabla f_i(\v{x}_k)
+\]
+This works because
+\begin{align*}
+	\mathbb{E}[\nabla f_i(\v{x}_k)] &= \frac{1}{m}\sum_{i=1}^mf_i(\v{x}) \\
+	&= \nabla f(\v{x}_k)
+\end{align*}
+We usually let $\eta$ be time-dependent.
+\end{definition}
+
+\begin{example}
+	Consider optimization problem
+	\[
+f(\v{x}) = \frac{1}{m}\sum_{i=1}^m\|\v{x}-\v{p}_i\|_2^2
+	\]
+	We use SGD to solve this problem. Let step size $\eta = \frac{1}{t}$ and $\v{x}_0 = 0$, then
+	\[
+\nabla f(\v{x}) = \frac{1}{2}2(\v{x}-\v{p}_i) = \v{x}-\v{p}_i
+	\]
+	The $\v{x}$ in each step goes like
+	\begin{align*}
+		\v{x}_0 &= 0\\
+		\v{x}_1 &= \v{x}_0 - \frac{1}{1}(\v{x}_0-\v{p}_1) = \v{p}_1\\
+		\v{x}_2 &= \v{x}_1 - \frac{1}{2}(\v{x}_1-\v{p}_2) = \frac{\v{p}_1+\v{p}_2}{2}\\
+		\v{x}_3 &= \v{x}_2 - \frac{1}{3}(\v{x}_2-\v{p}_3) = \frac{\v{p}_1+\v{p}_2+\v{p}_3}{3}
+	\end{align*}
+	The future terms of GD can be projected to
+	\[
+\v{x}_i = \frac{\sum_{j=1}^ip_j}{i}
+	\]
+\end{example}
+
+% subsection introduction_to_stochastic_gradient_descent (end)
+
+\subsection{Projected Gradient Descent} % (fold)
+\label{sub:projected_gradient_descent}
+
+\begin{definition}[projected gradient descent]
+	Differ from ordinary gradient descent, projected gradient descent solves for the general GD problem where $\v{x}$ is constrained. Formally, we want to solve the problem
+	\[
+\min_{\v{x}}f(\v{x})\;\;,\;\;\v{x}\in C
+	\]
+	Such that
+	\[
+\v{x}_{k+1} = \prod_C\v{x}_k-\eta\nabla f(\v{x}_k)
+	\]
+	And
+	\[
+\prod_C(\v{y}) = \argmin_{\v{\delta}\in C}\|\v{y}_{k+1}-\v{\delta}\|_2^2
+	\]
+	However, this could still be computationally expensive, therefore is replaced by Conditional Gradient Descent in the next subsection.
+\end{definition}
+
+% subsection projected_gradient_descent (end)
+
+\subsection{Conditional Gradient Descent} % (fold)	
+\label{sub:conditional_gradient_descent}
+
+\begin{definition}[conditional gradient descent/Frank–Wolfe algorithm]
+	Let $\gamma_k$ be a predetermined sequence. Define
+	\[
+\v{y}_k = \argmin_{\v{y}\in C}\nabla f(\v{x}_k)^\top\v{y}
+	\]
+	And
+	\begin{align*}
+		\v{x}_{k+1} &= (1- \gamma_k)\v{x}_k+ \gamma_k\v{y}_k\\
+		&= \v{x}_k + \gamma_k(\v{y}_k-\v{x}_k)
+	\end{align*}
+	Both Frank-Wolfe and PGD are generally computationally expensive, but Frank-Wolfe is sometimes cheaper. Frank-Wolfe also has a nice sparse property but it is out of scope for this class.
+\end{definition}
+
+% subsection conditional_gradient_descent (end)
 
 % section gradient_descent (end)

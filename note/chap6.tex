@@ -1,0 +1,82 @@
+\section{Duality} % (fold)
+\label{sec:duality}
+
+\begin{remark}
+	Gradient Descent works for unconstrained optimization problem on convex functions. It has challenges that the function should be differentiable and convex, and at the same time GD is computationally expensive. 
+
+	Duality is a technique that transforms every problem to a convex form (the dual form). It does not necessarily give us the solution to the original problem, but it will always give a bound.
+\end{remark}
+
+\begin{theorem}[Lagrangian]
+	Optimization problem
+	\[
+p^* = \min f_0(\v{x})
+	\]
+	Under the constrains
+	\begin{align*}
+		f_i(\v{x})&\le0,\;\;\;\forall i\;\;1\le i\le m\\
+		h_i(\v{x})&=0,\;\;\;\forall i\;\;1\le i\le p
+	\end{align*}
+	The problem defined above is called a \textbf{primal problem}. Define \textbf{Lagrangian}:
+	\[
+L(\v{x},\v{\lambda},\v{\nu}) = f_0(\v{x})+\sum_{i=1}^m \lambda_if_i(\v{x})+\sum_{i=1}^p\nu_ih_i(\v{x}) \;\;\; \forall \lambda_i \ge 0
+	\]
+	Note that it is an \textbf{affine} function of $\lambda$ and $\nu$, which means that it is \textbf{both convex and concave}. Now, define new problem
+	\[
+\min_{\lambda \ge 0} L(\v{x},\v{\lambda},\v{\nu}) := g(\v{\lambda},\v{\nu})
+	\]
+	Over all $\v{x}$. Examine g. Properties of g include
+	\begin{enumerate}
+		\item g is a function of only $\v{\lambda},\v{\nu}$.
+		\item L is an affine function of $\v{\lambda},\v{\nu}$.
+		\item By 1 and 2, g is a concave function of $\v{\lambda},\v{\nu}$.
+		\item It turns out, \textbf{g($\v{\lambda},\v{\nu}$) is a lower bound on the primal optimal $p^*$}.
+	\end{enumerate}
+\end{theorem}
+Proof of property No. 4: TODO
+
+\begin{example}
+	Let $A\in\mathbb{R}^{m*n}$, $m<n$. Problem
+	\[
+\min \v{x}^\top\v{x} = \v{p}^*
+	\]
+	Under the constrain
+	\[
+A\v{x} = \v{b}
+	\]
+	Since there is no inequality constains, the lagrangian of this problem does not have $\lambda$.
+	\[
+L(\v{x},\v{\nu}) = \v{x}^\top\v{x} + \nu^\top(A\v{x}-\v{b})
+	\]
+	\[
+g(\v{\nu}) = \min_{\v{x}}L(\v{x},\v{\nu})
+	\]
+	To solve for g, we do
+	\[
+\nabla_{\v{x}} L(\v{x},\v{\nu}) = 2\v{x}+A^\top\v{\nu}
+	\]
+	Set gradient to zero,
+	\[
+\v{x} = -\frac{1}{2}A^\top\v{\nu}
+	\]
+	Is the point where L is minimized. g at this point is 
+	\begin{align*}
+		g(\v{\nu}) &= L(-\frac{1}{2}A^\top\v{\nu}, \v{\nu}) = (-\frac{1}{2}A^\top\v{\nu})^\top(-\frac{1}{2}A^\top\v{\nu})+\v{\nu}^\top(-\frac{1}{2}AA^\top\v{\nu}-\v{b})\\
+		&=\frac{1}{4}\v{\nu}^\top A A^\top\v{\nu} +\v{\nu}^\top(-AA^\top\v{\nu}-\v{b})\\
+		&= -\frac{1}{4}\v{\nu}^\top A A^\top\v{\nu} - \v{\nu}^\top\v{b}
+	\end{align*}
+	Which is the lower bound of $p^*$. What is the max lower bound? In another word, we want to find
+	\[
+\max_{\v{\nu}}g(\v{\nu})
+	\]
+\end{example}
+
+\begin{definition}[Dual]
+	Continuing the definition of lagrangian, we want to find the tightest lower bound of $p^*$, formally
+	\[
+\max_{\v{\lambda}\ge0}g(\v{\lambda},\v{\nu}) = d^*
+	\]
+	Over $\v{\nu}$, this problem is the \textbf{DUAL Problem}. It is a maximization problem of a concave function under linear constrains, thus a \textbf{convex program}.
+\end{definition}
+
+% section duality (end)
