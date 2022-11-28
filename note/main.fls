@@ -1997,6 +1997,17 @@ INPUT ./chap6.tex
 INPUT chap6.tex
 INPUT ./chap6.tex
 INPUT chap6.tex
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolF5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolE5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolA5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolB5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolC5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolD5.tfm
+INPUT /opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/wasy/wasy5.tfm
 INPUT main.aux
 INPUT ./chap1.aux
 INPUT chap1.aux

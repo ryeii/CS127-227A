@@ -122,9 +122,248 @@ d^*= p^*
 \end{definition}
 
 \begin{remark}
-	Strong Duality $\implies$ Weak Duality. Weak duality always holds, while strong duality only holds under certain circumstances.
+	Strong Duality $\implies$ Weak Duality. \textbf{In general, weak duality always holds}, while strong duality only holds under certain circumstances.
+\end{remark}
+
+\begin{definition}[duality gap]
+	\[
+p^*-d^*
+	\]
+	is called the duality gap. Duality gap = 0 iff strong duality.
+\end{definition}
+
+\begin{theorem}[Minmax Inequality]
+	Sets X, Y. F is any function. Then,
+	\[
+\min_{x\in X} \max_{y\in Y} F(x, y) \ge \max_{y\in Y} \min_{x\in X} F(x, y)
+	\]
+\end{theorem}
+Proof of Minmax Inequality:
+\begin{proof}
+	Fix $x_0\in X$, $y_0\in Y$. Define
+	\[
+h(y_0) := \min_{x\in X}F(x, y_0)
+	\]
+	and
+	\[
+g(x_0) := \max_{y\in Y}F(x_0, y)
+	\]
+	See that
+	\[
+h(y_0) = \min_{x\in X}F(x, y_0) \le F(x_0, y_0) \le \max_{y\in Y}F(x_0, y) = g(x_0)
+	\]
+	Thus
+	\begin{align*}
+		h(y_0) &\le g(x_0) \\
+		\max_{y\in Y} h(y_0) &\le \min_{x\in X}g(x_0)\\
+		\max_{y\in Y} \min_{x\in X} F(x, y) &\le \min_{x\in X} \max_{y\in Y} F(x, y)
+	\end{align*}
+\end{proof}
+
+\begin{remark}[Implication of Minmax Inequality on Duality]
+	By definition,
+\begin{align*}
+	d^* &= \max_{\v{\lambda}\ge0}g(\v{\lambda},\v{\nu})\\
+	&= \max_{\v{\lambda}\ge0} \min_{\v{x}} L(\v{x},\v{\lambda},\v{\nu})
+\end{align*}
+How can we connect this to the primal? Consider
+\begin{align*}
+	&\max_{\v{\lambda}\ge0,\;\v{\nu}} \left(f_0(\v{x})+\sum_{i=1}^m \lambda_if_i(\v{x})+\sum_{i=1}^p\nu_ih_i(\v{x})\right)\\
+	=&\begin{cases}
+		f_0(\v{x}) & \text{if }\v{x} \text{ is feasible}\\
+		\infty& \text{if }\v{x} \text{ is infeasible}
+	\end{cases}
+\end{align*}
+Therefore we can write
+\[
+p^* = \min_{\v{x}}\max{\v{\lambda}\ge0,\;\v{\nu}} L(\v{x}, \v{\lambda}, \v{\nu})
+\]
+By the minmax inequality,
+\[
+p^* \ge d^*
+\]
+\end{remark}
+
+\begin{theorem}[Slater's Condition]
+	For a convex problem, strong duality holds if 
+	\[
+\exists \v{x}_0 \text{ such that } f_i(\v{x}_0) < 0 \;\;\forall i
+	\]
+	In another word, the point $\v{x}_0$ is strictly feasible. Or,
+	\[
+\v{x}_0 \in \text{ RelativeInterior}(\mathbf{D})
+	\]
+	For the purpose of this class we can think of RelativeInterior as the Interior.
+\end{theorem}
+
+\begin{theorem}[Refined Slater's Condition]
+	Convex problem, $\li{f}{k}$ that are affine,
+	\[
+\exists \v{x}_0 \text{ such that } f_i(\v{x}_0) \le 0 \;\;\forall i = 1, 2, \cdots, k \text{ AND } f_i(\v{x}_0) < 0\;\;\forall i = k+1,\cdots, m
+	\]
+	Assume that first k constraints are affine, and the rest are whatever non-linear things that you want them to be. You are allowed to have equality for the affine things, as long as the non-affine things all satisfy the above strict inequality. So you don't have to find a point that satisfies strict inequalities on the affine things too. Sometimes it is easier to find such point.
+\end{theorem}
+
+\begin{remark}
+	As long as the problem is feasible, strong duality will always hold for linear program.
 \end{remark}
 
 % subsection strong_duality (end)
+\newpage
+\subsection{Partitioning Problem} % (fold)
+\label{sub:partitioning_problem}
+
+\begin{definition}[partitioning problem]
+	\[
+\min_{\v{x}_i,\;\v{x}_i^2 = 1} \v{x}^\top W\v{x},\;\;W\in \mathbb{S}^n
+	\]
+\end{definition}
+
+\begin{remark}
+	Partitioning problem is not a convex problem. This is because that $\v{x}_i$ can only be either +1 or -1, thus the domain is descrete.
+\end{remark}
+
+The lagrangian for the partitioning problem is 
+\begin{align*}
+	L(\v{x},\v{\nu}) &= \v{x}^\top W\v{x} + \sum_{i=1}^n\v{\nu}_i(\v{x}_i^2-1)\\
+	&= \v{x}^\top W\v{x} + \v{x}^\top diag(\v{\nu})\v{x} - \sum_{i=1}^n\v{\nu}_i\\
+	&= \v{x}^\top(W+diag(\v{\nu}))\v{x} - \sum_{i=1}^n\v{\nu}_i
+\end{align*}
+If $(W+diag(\v{\nu}))$ is PSD, the problem is convex. If it is NSD, the problem is concave. The g for the partitioning problem is
+\begin{align*}
+	g(\v{\nu}) &= \min_{\v{x}}L(\v{x},\v{\nu})\\
+	&= \begin{cases}
+		-\sum_{i=1}^n\v{\nu}_i  &\text{if $(W+diag(\v{\nu}))$ PSD}\\
+		-\infty &\text{otherwise}
+	\end{cases}
+\end{align*}
+We see that this problem is trivial if $(W+diag(\v{\nu}))$ is not PSD. We can rewrite this problem as its dual:
+\[
+\max \sum_{i=1}^n\v{\nu}_i,\;\;\text{subject to}\;\;(W+diag(\v{\nu}))\succeq 0
+\]
+This is a special kind of problem called \textbf{Semi-definite Program}. It is a convex problem that can be efficiently solved. Particularly, for this problem, we choose
+\[
+\v{\nu} = \lambda_{min}(W)
+\]
+and we have the lower bound
+\[
+p^* \ge n \lambda_{min}(W)
+\]
+This is an example of transforming a very hard-to-solve problem into a convex problem that we can efficiently solve.
+
+% subsection partitioning_problem (end)
+\newpage 
+\subsection{LP and Duality} % (fold)
+\label{sub:lp_and_duality}
+
+\begin{example}
+	Consider linear program
+	\[
+\min_{A\v{x}\le \v{b}} \v{c}^\top\v{x}
+	\]
+	The lagrangian is
+	\begin{align*}
+		L(\v{x},\v{\lambda}) &= \v{c}^\top\v{x}+\v{\lambda}^\top(A\v{x}\le \v{b})\\
+		&= (A^\top\v{\lambda}+\v{c})^\top\v{x}-\v{b}^\top\v{\lambda}
+	\end{align*}
+	The g is 
+	\begin{align*}
+		g(\v{\lambda}) &= \min_{\v{x}}L(\v{x},\v{\lambda})\\
+		&= \begin{cases}
+			-\infty & \text{if } A^\top\v{\lambda}+\v{c}\neq 0\\
+			-\v{b}^\top\v{\lambda} & \text{if } A^\top\v{\lambda}+\v{c}= 0
+		\end{cases}
+	\end{align*}
+	The first case is trivial. In order to get a non-trivial bound, we want to calculate
+	\[
+d^* = \max_{\v{\lambda}\ge0,\;A^\top\v{\lambda}+\v{c}=0} -\v{b}^\top\v{\lambda}
+	\]
+	This is our dual problem.
+
+\end{example}
+
+\begin{example}[Winery]
+	Consider the following business problem. You have 200 kilos of merlot and 300 kilos of shiras. You have two recipes:
+	\begin{itemize}
+		\item Blend 1: 4 kilos merlot + 1 kilo shiras, sell \$20
+		\item Blend 2: 2 kilos merlot + 3 kilos shiras, sell \$15
+	\end{itemize}
+	You want to make $q_1$ of blend 1 and $q_2$ of blend 2. How to optimize our revenue? We set up problem for this
+	\[
+\max_{q_1,\; q_2 \ge 0} 20q_1 +15q_2
+	\]
+	Subject to
+	\begin{align*}
+		4q_1+2q_1&\le 200\\
+		q_2+3q_2&\le 300
+	\end{align*}
+	Let's say we sell the leftover grapes. Let $\lambda_1$ be the rate to sell marlot and $\lambda_2$ be the rate to sell shiras. Then we write new optimization problem
+	\begin{align*}
+		&\max_{q_1,\; q_2 \ge 0} 20q_1 +15q_2 +\lambda_1(200-4q_1+2q_1) +\lambda_2(300-q_2+3q_2)\\
+		=& \max_{q_1,\; q_2 \ge 0} (20-4 \lambda_1- \lambda_2)q_1+(15-2 \lambda_1-3 \lambda_2)q_2+200 \lambda_1+300 \lambda_2
+	\end{align*}
+	Note that the first line looks like a lagrangian. From the second line we can see that
+	\begin{itemize}
+		\item if $(20-4 \lambda_1- \lambda_2)$ negative, do not make blend 1. If it is positive, make as much blend 1 as you can.
+		\item if $(15-2 \lambda_1-3 \lambda_2)$ negative, do not make blend 2. If it is positive, make as much blend 2 as you can.
+	\end{itemize}
+	The strategy seems clear. But what if we have
+	\[
+20-4 \lambda_1- \lambda_2 = 0 \text{ AND } 15-2 \lambda_1-3 \lambda_2 = 0
+	\]? Then we do not care whether to sell the grapes or to make grapes into wine. These lambda's are called the \textbf{shadow prices} of grapes. What is our minimum revenue under these conditions? It is
+	\[
+\min_{\lambda_1, \; \lambda_2 \ge 0} 200 \lambda_1+300 \lambda_2
+	\]
+	Subject to
+	\[
+20-4 \lambda_1- \lambda_2 = 0 \text{ AND } 15-2 \lambda_1-3 \lambda_2 = 0
+	\]
+	If plug in the numbers, you can see that the original problem and the shadow price problem are primal and dual of each other. Note that for this particular problem, the feasible region of the dual problem is a point.
+\end{example}
+
+% subsection lp_and_duality (end)
+
+\subsection{Duality Certificates} % (fold)
+\label{sub:duality_certificates}
+
+\begin{definition}[certificate]
+	Let $(\lambda_1, \nu_1)$ be a dual feasible point, meaning that it satisfy the constaints of the dual. Let $x_1$ be the primal feasible point. Then we know that
+	\[
+p^* \ge g(\lambda_1, \nu_1)
+	\]
+	This implies that
+	\[
+f_0(x_1)-p^* \le f_0(x_1)-g(\lambda_1, \nu_1)
+	\]
+	This means that if $f_0(x_1)-g(\lambda_1, \nu_1)$ is small, $f_0(x_1)-p^*$ is also small. This could be used as the stopping condition for optimization programs. Another way of writing this is that
+	\[
+p^* \in [g(\lambda_1, \nu_1), f_0(x_1)]
+	\]
+	If the strong duality holds, we would also have
+	\[
+d^* \in [g(\lambda_1, \nu_1), f_0(x_1)]
+	\]
+	Note that if the strong duality does not hold, the above about $d^*$ might not be true due to possibly large duality gap.
+\end{definition}
+
+% subsection duality_certificates (end)
+
+\subsection{Complementary Slackness} % (fold)
+\label{sub:complementary_slackness}
+
+\begin{definition}
+	Consider the following situation: the primal optimal $\v{x}^*$ and dual optimal $\v{\lambda}^*, \v{\nu}^*$. Assume strong duality holds, i.e. $p^*=d^*$. We have
+	\[
+p^* = f_0(\v{x}^*) = d^* = g(\v{\lambda}^*, \v{\nu}^*)  
+	\]
+	And
+	\begin{align*}
+		g(\v{\lambda}^*, \v{\nu}^*) &= \min_{\v{x}} \left(f_0(\v{x})+\sum_{i=1}^m \lambda_i^*f_i(\v{x})+\sum_{i=1}^p\nu_i^*h_i(\v{x})\right)\\
+		&\le f_0(\v{x}^*) + \sum_{i=1}^m \lambda_i^*f_i(\v{x}^*)+\sum_{i=1}^p\nu_i^*h_i(\v{x}^*)
+	\end{align*}
+	Since we are considering primal problem with constraints including $f_i(\v{x})\le 0$ and the dual $d^* = \max_{\v{\lambda}\ge 0}g(\v{\lambda},\v{\nu})$, we know the term $\sum_{i=1}^m \lambda_i^*f_i(\v{x}^*)$ is at most zero.
+\end{definition}
+
+% subsection complementary_slackness (end)
 
 % section duality (end)

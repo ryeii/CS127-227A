@@ -25,4 +25,8 @@
 \contentsline {section}{\numberline {6}Duality}{32}{section.164}%
 \contentsline {subsection}{\numberline {6.a}Weak Duality}{32}{subsection.165}%
 \contentsline {subsection}{\numberline {6.b}Strong Duality}{34}{subsection.184}%
+\contentsline {subsection}{\numberline {6.c}Partitioning Problem}{37}{subsection.201}%
+\contentsline {subsection}{\numberline {6.d}LP and Duality}{38}{subsection.206}%
+\contentsline {subsection}{\numberline {6.e}Duality Certificates}{40}{subsection.211}%
+\contentsline {subsection}{\numberline {6.f}Complementary Slackness}{40}{subsection.214}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

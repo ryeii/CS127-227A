@@ -1,0 +1,11 @@
+# Fdb version 3
+["pdflatex"] 1669600040 "chap6.tex" "chap6.pdf" "chap6" 1669600040
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/map/fontname/texfonts.map" 1647894602 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1647894602 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-dist/web2c/texmf.cnf" 1647894602 40174 4e2f94c7b252db2ad3c0cfdef6912ab3 ""
+  "/opt/homebrew/Cellar/texlive/20220321_2/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1647894602 2826556 0002dc3aea202f8dbf42bc967c64f503 ""
+  "chap6.aux" 1669599875 6297 bed6ea0661e742010f38ab6fa4f8e5da ""
+  "chap6.tex" 1669600040 12835 6b04a9c2d7771b6d17f6167e0034a059 ""
+  (generated)
+  "chap6.log"
+  "chap6.pdf"
