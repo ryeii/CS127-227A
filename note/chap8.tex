@@ -1,0 +1,102 @@
+\section{Quadratic Programs} % (fold)
+\label{sec:quadratic_programs}
+
+\subsection{Solutions to QP} % (fold)
+\label{sub:solutions_to_qp}
+
+\begin{definition}
+	\begin{align*}
+	&\min \frac{1}{2}\v{x}^\top H\v{x} +\v{c}^\top\v{x}\\
+	s.t.\;\;&A\v{x}\le\v{b}\\
+	&C\v{x} = \v{d}
+\end{align*}
+Is a quadratic program. In general, QPs are not convex. However, if $H = H^\top$ and $H$ is PSD, then this is also convex.
+\end{definition}
+
+\begin{definition}[Moore-Penrose Pseudoinverse]
+	Let H be n*n matrix, $H = U\Sigma V^\top$, H has rank r, then
+	\[
+H = U \begin{bmatrix}
+	\Sigma_{r*r}&0\\0&0
+\end{bmatrix}V^\top
+	\]
+	Then the Moore-Penrose Pseudoinverse of H is
+	\[
+H^\dagger = V\begin{bmatrix}
+	\Sigma_{r*r}^{-1}&0\\0&0
+\end{bmatrix}U^\top
+	\]
+	And
+	\begin{align*}
+		HH^\dagger &= U_rU_r^\top\\
+		H^\dagger H &= V_rV_r^\top\\
+		HH^\dagger H &= H
+	\end{align*}
+\end{definition}
+
+\begin{theorem}
+	Assume H symmetric and the problem is unconstrained. Then we can find the solution of QP based on the following decision tree.
+
+	1. H has at least one negative eigenvalue, then $p^* = -\infty$ by choosing eigenvector corresponding to negative eigenvalue.
+
+	2. H is PSD
+
+	2.1 $\v{c}\in R(H)$. We rewrite f as
+	\begin{align*}
+		f(\v{x}) &= \frac{1}{2}\v{x}^\top H\v{x}+\v{c}^\top\v{x}\\
+		&= \frac{1}{2}(\v{x}-\v{x}_0)^\top H(\v{x}-\v{x}_0)+\alpha\\
+		&= \frac{1}{2}\v{x}^\top H\v{x}+\frac{1}{2}\v{x}_0^\top H\v{x}_0+\alpha
+	\end{align*}
+	\[\v{c} = -H\v{x}_0 \;\;\; \alpha = \frac{1}{2}\v{x}_0^\top H\v{x}_0\]
+	Then we see that in order to minimize f, we want to choose $\v{x} = \v{x}_0$.
+
+	2.1.1 H is invertible (H is PD).
+	\[
+\v{x}^* = -H^{-1}\v{c}
+	\]
+
+	2.1.2 H has non-trivial nullspace (H not invertible).
+	\[
+\v{x}^* = -H^\dagger\v{c}+\v{\xi}\;\;\;\v{\xi}\in N(H)
+	\]
+
+	2.2 $\v{c}\nin R(H)$
+	\[\v{c} = -H\v{x}_0+\v{r} \;\;\; \v{r}\in N(H^\top)\]
+	\begin{align*}
+		f(\v{r}) &= \frac{1}{2}\v{r}^\top H\v{r}+\v{c}^\top\v{r}\\
+		&= 0+ -(H\v{x}_0+\v{r})^\top\v{r}\\
+		&= -\v{x}_0^\top H^\top\v{r} -\v{r}^\top\v{r}\\
+		&=-\|\v{r}\|_2^2
+	\end{align*}
+	By taking large multiple of $\v{r}$ we see that $p^* = \min f = -\infty$.
+\end{theorem}
+
+\begin{theorem}
+	Any equality constrained QP can be translated into unconstrained QP and read off solution based on previous theorem.
+\end{theorem}
+
+% subsection solutions_to_qp (end)
+
+\subsection{Applications of QP} % (fold)
+\label{sub:applications_of_qp}
+
+\begin{definition}[Linear Control]
+	A.k.a LQR problems, foundation for modern robotic control. Consider control problem
+	\[
+x(t+1) = Ax(t)+Bu(t)
+	\]
+	Note that
+	\[
+x(t) = A^tx(0)+\sum_{i=1}^{t-1}A^{t-i-1}Bu(i)
+	\]
+	Example: goal = to reach $\v{g}$ by time T. Then we have optimization problem
+	\begin{align*}
+		&\min \|\v{x}(T)-\v{g}\|_2^2+\sum_{t=0}^T\|u(t)\|_2^2\\
+s.t.\;\;\;&x(t) = A^tx(0)+\sum_{i=0}^{t-1}A^{t-i-1}Bu(1)
+	\end{align*}
+	This is a complicated problem, but its constaints are entirely linear. With this optimization problem we can solve for explicit sequence of optimal control, instead of using recursion or dynamic programming.
+\end{definition}
+
+% subsection applications_of_qp (end)
+
+% section quadratic_programs (end)

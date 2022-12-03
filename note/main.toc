@@ -29,4 +29,10 @@
 \contentsline {subsection}{\numberline {6.d}LP and Duality}{38}{subsection.206}%
 \contentsline {subsection}{\numberline {6.e}Duality Certificates}{40}{subsection.211}%
 \contentsline {subsection}{\numberline {6.f}Complementary Slackness}{40}{subsection.214}%
+\contentsline {subsection}{\numberline {6.g}KKT Conditions}{41}{subsection.221}%
+\contentsline {section}{\numberline {7}Linear Programs}{42}{section.238}%
+\contentsline {section}{\numberline {8}Quadratic Programs}{44}{section.251}%
+\contentsline {subsection}{\numberline {8.a}Solutions to QP}{44}{subsection.252}%
+\contentsline {subsection}{\numberline {8.b}Applications of QP}{45}{subsection.261}%
+\contentsline {section}{\numberline {9}Second-order Cone Problems}{47}{section.264}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

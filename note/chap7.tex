@@ -1,0 +1,75 @@
+\section{Linear Programs} % (fold)
+\label{sec:linear_programs}
+
+\begin{remark}
+		\[
+\v{a}^\top\v{x} = \v{b} \iff \v{a}^\top\v{x} \le \v{b} \;\;AND\;\; \v{a}^\top\v{x} \ge \v{b}
+	\]
+\end{remark}
+
+\begin{theorem}
+	All LP's can be translated into the following standard form:
+	\[
+\min_{A\v{x} = \v{b}\;\;\v{x}\ge 0} \v{c}^\top\v{x}
+	\]
+	1. How to \textbf{eliminate inequality}? For expression
+	\[
+\sum_{j=1}^na_{ij}x_j \le b
+	\]
+	We can rewrite it as
+	\[
+\sum_{i=1}^na_{ij}x_j+S_i=b_i, \;\; S_i \ge 0
+	\]
+	2. How to get $x_i\ge0$ for all $x_i$? If $x_i$ is unconstrained, we can always express it as the difference of two positive numbers: $x_i = x_i^+-x_i^-$. For example:
+	\begin{align*}
+		&\min2x_1+4x_2\\
+		s.t.\;\;&x_1+x_2\ge3\\
+		&3x_1+2x_2=14\\
+		&x_1\ge0
+	\end{align*}
+	We can express the constraints by introducing a slack variable $x_3$\begin{align*}
+		x_1+x_2-x_3&=3\;\;x_3\ge0\\
+		x_2&=x_2^+-x_2^-\\
+	\end{align*}
+	By doing this we can rewrite the original problem as
+	\begin{align*}
+		&\min2x_1+3x_2^+-4x_2^-\\
+		s.t.\;\;&x_1+x_2^+-x_2^--x_3 = 3\\
+		&3x_1+2x_2^+-2x_2^- = 14\\
+		&x_1\ge0\\
+		&x_2^+\ge0\\
+		&x_2^-\ge0\\
+		&x_3\ge0
+	\end{align*}
+\end{theorem}
+
+\begin{definition}[Polyhedron]
+\[
+Set \{\v{x}\in\mathbb{R}^n \;|\; A\v{x} \ge \v{b}\} \;A\in\mathbb{R}^{m*n}\;\;\v{b}\in\mathbb{R}^m
+\]
+Is called a polyhedron. Standarf form:
+\[
+Set\{\v{x}\in\mathbb{R}^l \;|\;c\v{x}=\v{d};\;\v{x}\ge0 \}
+\]
+Intuitively, P is the feasible region of a LP.
+\end{definition}
+
+\begin{definition}[Extreme points of a polyhedron]
+	$x\in P$ is an extreme point (i.e. vertex of P) if we cannot find two vectors $\v{y},\v{z}\neq\v{x},\;\v{y},\v{z}\in P$ and $\lambda\in[0,1]$ such that $\v{x}=\lambda\v{y}+(1- \lambda)\v{z}$.
+
+	\noindent That is, a point x is a vertex iff we cannot find two other point on this polyhedron such that these two points form a convex combination of x.
+\end{definition}
+
+\begin{theorem}
+	P has an extreme point iff P does not contain a line.
+\end{theorem}
+
+\begin{theorem}
+	Consider
+	\[
+\min_{A\v{x}\le\v{b}} \v{c}^\top\v{x}
+	\]
+	Assume 1. P has an extreme point, 2. optimal solution exists and is finite. Then there exists an optimal solution that is an extreme point of P. (Note that this is not saying all solutions are extreme points.)
+\end{theorem}
+Proof of theorem 7.6: TODO
+% section linear_programs (end)

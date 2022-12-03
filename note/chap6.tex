@@ -351,7 +351,7 @@ d^* \in [g(\lambda_1, \nu_1), f_0(x_1)]
 \subsection{Complementary Slackness} % (fold)
 \label{sub:complementary_slackness}
 
-\begin{definition}
+\begin{theorem}[complementary slackness]
 	Consider the following situation: the primal optimal $\v{x}^*$ and dual optimal $\v{\lambda}^*, \v{\nu}^*$. Assume strong duality holds, i.e. $p^*=d^*$. We have
 	\[
 p^* = f_0(\v{x}^*) = d^* = g(\v{\lambda}^*, \v{\nu}^*)  
@@ -359,11 +359,54 @@ p^* = f_0(\v{x}^*) = d^* = g(\v{\lambda}^*, \v{\nu}^*)
 	And
 	\begin{align*}
 		g(\v{\lambda}^*, \v{\nu}^*) &= \min_{\v{x}} \left(f_0(\v{x})+\sum_{i=1}^m \lambda_i^*f_i(\v{x})+\sum_{i=1}^p\nu_i^*h_i(\v{x})\right)\\
-		&\le f_0(\v{x}^*) + \sum_{i=1}^m \lambda_i^*f_i(\v{x}^*)+\sum_{i=1}^p\nu_i^*h_i(\v{x}^*)
+		&\le f_0(\v{x}^*) + \sum_{i=1}^m \lambda_i^*f_i(\v{x}^*)+\sum_{i=1}^p\nu_i^*h_i(\v{x}^*) \tag{1}
 	\end{align*}
-	Since we are considering primal problem with constraints including $f_i(\v{x})\le 0$ and the dual $d^* = \max_{\v{\lambda}\ge 0}g(\v{\lambda},\v{\nu})$, we know the term $\sum_{i=1}^m \lambda_i^*f_i(\v{x}^*)$ is at most zero.
-\end{definition}
+	Since we are considering primal problem with constraints including $f_i(\v{x})\le 0$ and the dual $d^* = \max_{\v{\lambda}\ge 0}g(\v{\lambda},\v{\nu})$, we know the term $\sum_{i=1}^m \lambda_i^*f_i(\v{x}^*)$ is at most zero. In addition, the constraints of the primal problem includes $h_i(\v{x})= 0$ and thus $\sum_{i=1}^p\nu_i^*h_i(\v{x}^*)$ is zero. Therefore we could write
+	\begin{align*}
+		g(\v{\lambda}^*, \v{\nu}^*) &\le f_0(\v{x}^*) +0 +0 = f_0(\v{x}^*) \tag{2}
+	\end{align*}
+	If the above holds, then both inequalities (1) and (2) must in fact be equalities!
+\end{theorem}
+
+Proof of Complementary Slackness: TODO
 
 % subsection complementary_slackness (end)
+
+\subsection{KKT Conditions} % (fold)
+\label{sub:kkt_conditions}
+
+\begin{remark}
+	Karush-Kuhn-Tucker are the three people responsible for these conditions.
+\end{remark}
+
+\begin{theorem}[KKT Conditions]
+	The following enumerated conditions are \textit{necessary}, but not necessarily \textit{sufficient}, conditions to the optimality of primal optimal $\v{x}^*$ and dual optimal $\v{\lambda}^*, \v{\nu}^*$. Assume strong duality holds, i.e. $p^*=d^*$. Convex OR non-convex problem. Both object function and the contraints differentiable. Then, the fact that primal optimal $\v{x}^*$ and dual optimal $\v{\lambda}^*, \v{\nu}^*$ implies
+	\begin{enumerate}
+		\item $f_i(\v{x}^*) \le 0\;\; \forall i=1,\cdots,m$
+		\item $h_i(\v{x}^*) = 0\;\; \forall i=1,\cdots,p$
+		\item $\lambda_i^* \ge 0 \;\; \forall i=1,\cdots,m$
+		\item $\lambda_i^*f_i(\v{x}^*) = 0 \;\; \forall i=1,\cdots,m$ (Complementary Slackness)
+		\item $\nabla f_0(\v{x}^*)+\sum \lambda_i^*\nabla f_i(\v{x}^*) +\sum\nu_i^*\nabla h_i(\v{x}^*) = 0$
+	\end{enumerate}
+	The fifth condition means that $\v{x}^*$ minimizes $L(\v{x},\v{\lambda}^*,\v{\nu}^*)$, which is implied by the Main Theorem.
+\end{theorem}
+
+\begin{theorem}[KKT Conditions Part II]
+	Convex and differentiable problems. Strong duality not necessarily holds. Sufficient conditions. $\tilde{x}, \tilde{\lambda}, \tilde{\nu}$ are points. f's are convex and h's are affine. If the points satisfy:
+	\begin{enumerate}
+		\item $f_i(\tilde{x}) \le 0\;\; \forall i=1,\cdots,m $
+		\item $h_i(\tilde{x}) = 0\;\; \forall i=1,\cdots,p$
+		\item $\tilde{\lambda}_i \ge 0 \;\; \forall i=1,\cdots,m$
+		\item $\tilde{\lambda}_if_i(\tilde{x}) = 0 \;\; \forall i=1,\cdots,m$
+		\item $\nabla f_0(\tilde{x})+\sum \tilde{\lambda}_i\nabla f_i(\tilde{x}) +\sum\tilde{\nu}_i\nabla h_i(\tilde{x}) = 0$
+	\end{enumerate}
+	Then $\tilde{x}, \tilde{\lambda}, \tilde{\nu}$ are primal+dual optimal. Note that the strong duality is not needed for sufficiency only, but for it to be an iff statement you need strong duality: 
+	\[
+\text{optimality} \iff \text{the points satisfy KKT + problem convex + $h_i$ affine + slater conditions}
+	\]
+\end{theorem}
+Proof of KKT Conditions: TODO
+
+% subsection kkt_conditions (end)
 
 % section duality (end)

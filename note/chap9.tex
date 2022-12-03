@@ -1,0 +1,71 @@
+\section{Second-order Cone Problems} % (fold)
+\label{sec:second_order_cone_problems}
+
+\begin{definition}[cone]
+	Set of points $C\in \mathbb{R}^n$ is a cone iff
+	\[
+\alpha\v{x}\in C\;\;\;\text{if }\v{x}\in C\;\;\;\forall \alpha\ge0
+	\]
+\end{definition}
+
+\begin{definition}[convex cone]
+	C is a convex cone if
+	\[
+\alpha\v{x}\in C \;\;\;\forall \alpha\ge0 \;\text{ and } \theta_1,\theta_2\ge 0
+	\]
+	Then 
+	\[
+\theta_1\v{x}_1+\theta_2\v{x}_2 \in C
+	\]
+\end{definition}
+
+\begin{example}
+	\[C = \{(x, y)\;|\;y\ge 0\}\]
+	This cone has a feasible region of all region above x-axis.
+\end{example}
+
+\begin{definition}[Polyhedron cone]
+	\[
+\text{Polyhedron: }\{\v{x}\;|\; A\v{x}-\v{b} \}
+	\]
+\end{definition}
+
+\begin{definition}[Ellipsoidal cone]
+	This is the kind of cone we are going to concern the most. Recall that
+	\[
+\v{x}^\top P\v{x}+\v{q}^\top \v{x}+r\le 0,\;\;P\succ0
+	\]
+	Defines a ellipsoid. Consider
+	\begin{align*}
+		\|A\v{x}+b\|_2^2 &\le c^2 \\
+		\v{x}^\top A^\top A\v{x}+2\v{b}^\top A\v{x}+\v{b}^\top\v{b}-c^2&\le 0
+	\end{align*}
+	Then \[
+\{(\v{x}, t)\;|\;\|A\v{x}+\v{b}t\|_2\le ct\}
+	\] is an ellipsoidal cone.
+\end{definition}
+
+\begin{remark}[Special case of Ellipsoidal cone (second-order cone)]
+	Consider a second-order cone in $\mathbb{R}^3$
+	\[
+\{(\v{x}_1,\v{x}_2,t)\;|\;\sqrt{\v{x}_1^2+\v{x}_2^2}\le t\}
+	\]
+	is the "ice cream cone" because it looks like a ice cream cup.
+\end{remark}
+
+\begin{definition}[SOCP]
+\begin{align*}
+	&\min \v{q}^\top\v{x}\\
+	s.t.\;\;\;&\|A_i\v{x}+b_i\|_2\le \v{c}_i^\top\v{x}+\v{d}_i \;\;\;i=1,2,\cdots,m
+\end{align*}
+Is a SOCP. It is a program with constraints that takes the form of a cone.
+\end{definition}
+
+\begin{example}
+	\begin{align*}
+		\min_x\sum_{i=1}^m\|A_i\v{x}-\v{b}_i\|_2
+	\end{align*}
+	Can be formulated into a SOCP.
+\end{example}
+
+% section second_order_cone_problems (end)
