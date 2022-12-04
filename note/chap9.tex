@@ -65,7 +65,41 @@ Is a SOCP. It is a program with constraints that takes the form of a cone.
 	\begin{align*}
 		\min_x\sum_{i=1}^m\|A_i\v{x}-\v{b}_i\|_2
 	\end{align*}
-	Can be formulated into a SOCP.
+	Can be formulated into a SOCP:
+	\begin{align*}
+		&\min_x\sum_{i=1}^m\|A_i\v{x}-\v{b}_i\|_2\\
+		=&\min_{x, y_i, \|A_i\v{x}-\v{b}_i\|_2 = y_i}\sum_{i=1}^my_i& \text{relax the equality into inequality}\\
+		=&\min_{x, y_i, \|A_i\v{x}-\v{b}_i\|_2 \le y_i}\sum_{i=1}^my_i
+	\end{align*}
+\end{example}
+
+\begin{example}[Facility Location Problem]
+		Say we want to place a facility (playground or ER, etc.) and we want this facility to be close to people.\\
+	\center
+	\includegraphics{img/FLP.png}
+\end{example}
+
+\begin{example}[Trilateration/GPS]
+	A packet is transmitted at $t_i^T$ and received at $t_i^R$ with an offset $\delta$ such that
+	\[
+t_i^{\text{true}} = t_i^R+\delta
+	\]
+	\begin{itemize}
+		\item Time of flight $f_i = t_i^{\text{true}} - t_i^T = t_i^R+\delta- t_i^T = \Delta_i+\delta$
+		\item Distance $cf_i = c \Delta_i+c \delta = \|\v{x}-\v{q}_i\|_2$
+	\end{itemize}
+	Where c = the speed of light, x is the current location and q is the satellite location. We use 4 satellites, sqare all the equations, and substract them from the equation of satellite \#4.
+	\begin{align*}
+		\|x-q_4\|_2^2 - \|x-q_1\|_2^2&=x^\top x-x^\top x+0x+const\\
+		2(q_4-q)^\top x+2c^2(\Delta_4- \Delta_1)\delta &= c^2(\Delta_1^2- \Delta_4^2)+\|q_4\|_2^2-\|q_1\|_2^2
+	\end{align*}
+	But what if instead of four satellites, we only have three satellites? We can solve this via SOCP by constructing optimization problem
+	\begin{align*}
+	&\min \delta\\
+	s.t.\;\;\;&2(q_3-q_1)^\top x+2c^2(\Delta_3- \Delta_1)\delta = c^2(\Delta_1^2- \Delta_3^2)+\|q_3\|_2^2-\|q_1\|_2^2\\
+	&2(q_3-q_2)^\top x+2c^2(\Delta_3- \Delta_2)\delta = c^2(\Delta_2^2- \Delta_3^2)+\|q_3\|_2^2-\|q_2\|_2^2\\
+	&\|x-q_3\|_2=c \Delta_3+c \delta
+	\end{align*}
 \end{example}
 
 % section second_order_cone_problems (end)

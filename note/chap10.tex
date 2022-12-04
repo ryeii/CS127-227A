@@ -1,0 +1,37 @@
+\section{Newton's Method} % (fold)
+\label{sec:newton_s_method}
+
+\begin{remark}
+	We call gradient descent a "first-order method" because it works by taking the first-order derivative of the object function. Newton's Method is a "second-order method."
+\end{remark}
+
+\begin{definition}
+	min f(x). Want $\v{x}_0, \v{x}_1$ converge to $\v{x}$, which is the optimal. Then the Newton step is defined as
+	\[
+x_{k+1} = x_k-(\nabla^2 f(x_k))^{-1}\nabla f(x_k)
+	\]
+	Assuming that f is convex and Hessian is PD (so it's invertible).
+\end{definition}
+
+\begin{remark}
+	For cases where Hessian is PSD, there is a family of method called \textbf{Quasi-Newton methods} which solve the problem using Newton's method approach but pretend the problem is second-order differentiable. It's a simple idea and we should not be intimidated by the jargon.
+\end{remark}
+
+\begin{remark}
+	Newtons' method does not have a $\eta$. You can do Newton's method by manually plugging in a stepsize but by default the stepsize is always 1.
+\end{remark}
+
+\begin{remark}[Pros and Cons of the Newton's method]
+	Pros:
+	\begin{itemize}
+		\item Converge faster than GD
+	\end{itemize}
+
+	\noindent Cons:
+	\begin{itemize}
+		\item You have to do a Hessian inversion everytime, which is computationally expensive.
+	\end{itemize}
+	\noindent Sometimes it is cheaper to just compute the gradient, but gradient descent also takes more steps. Therefore most of the times it is unclear to us which method is computationally cheaper.
+\end{remark}
+
+% section newton_s_method (end)

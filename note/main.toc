@@ -1,38 +1,39 @@
-\contentsline {section}{\numberline {1}Linear Algebra}{3}{section.2}%
-\contentsline {subsection}{\numberline {1.a}Least-Squares Problem Statement}{3}{subsection.3}%
-\contentsline {subsection}{\numberline {1.b}Norm}{4}{subsection.10}%
-\contentsline {subsection}{\numberline {1.c}Gram-Schimdt}{5}{subsection.19}%
-\contentsline {subsection}{\numberline {1.d}Symmetric Matrices}{6}{subsection.28}%
-\contentsline {subsection}{\numberline {1.e}Principal Component Analysis}{7}{subsection.35}%
-\contentsline {subsection}{\numberline {1.f}Singular Value Decomposition}{8}{subsection.38}%
-\contentsline {subsection}{\numberline {1.g}Low-Rank Approximation}{10}{subsection.43}%
-\contentsline {section}{\numberline {2}Vector Calculus}{13}{section.56}%
-\contentsline {section}{\numberline {3}Regression}{16}{section.71}%
-\contentsline {subsection}{\numberline {3.a}Sensitivity}{16}{subsection.72}%
-\contentsline {subsection}{\numberline {3.b}Shift property of eigenvalues}{17}{subsection.77}%
-\contentsline {subsection}{\numberline {3.c}Ridge Regression}{17}{subsection.80}%
-\contentsline {subsection}{\numberline {3.d}Tikhonov regularization}{17}{subsection.83}%
-\contentsline {subsection}{\numberline {3.e}Probablistic perspective}{18}{subsection.86}%
-\contentsline {section}{\numberline {4}Convexity}{21}{section.93}%
-\contentsline {subsection}{\numberline {4.a}Convex Sets}{21}{subsection.94}%
-\contentsline {subsection}{\numberline {4.b}Convex Functions}{23}{subsection.111}%
-\contentsline {section}{\numberline {5}Gradient Descent}{26}{section.136}%
-\contentsline {subsection}{\numberline {5.a}Introduction to Gradient Descent}{26}{subsection.137}%
-\contentsline {subsection}{\numberline {5.b}Gradient Descent for $\mu $-strongly convex L-smooth functions}{27}{subsection.144}%
-\contentsline {subsection}{\numberline {5.c}Introduction to Stochastic Gradient Descent}{29}{subsection.153}%
-\contentsline {subsection}{\numberline {5.d}Projected Gradient Descent}{30}{subsection.158}%
-\contentsline {subsection}{\numberline {5.e}Conditional Gradient Descent}{30}{subsection.161}%
-\contentsline {section}{\numberline {6}Duality}{32}{section.164}%
-\contentsline {subsection}{\numberline {6.a}Weak Duality}{32}{subsection.165}%
-\contentsline {subsection}{\numberline {6.b}Strong Duality}{34}{subsection.184}%
-\contentsline {subsection}{\numberline {6.c}Partitioning Problem}{37}{subsection.201}%
-\contentsline {subsection}{\numberline {6.d}LP and Duality}{38}{subsection.206}%
-\contentsline {subsection}{\numberline {6.e}Duality Certificates}{40}{subsection.211}%
-\contentsline {subsection}{\numberline {6.f}Complementary Slackness}{40}{subsection.214}%
-\contentsline {subsection}{\numberline {6.g}KKT Conditions}{41}{subsection.221}%
-\contentsline {section}{\numberline {7}Linear Programs}{42}{section.238}%
-\contentsline {section}{\numberline {8}Quadratic Programs}{44}{section.251}%
-\contentsline {subsection}{\numberline {8.a}Solutions to QP}{44}{subsection.252}%
-\contentsline {subsection}{\numberline {8.b}Applications of QP}{45}{subsection.261}%
-\contentsline {section}{\numberline {9}Second-order Cone Problems}{47}{section.264}%
+\contentsline {section}{\numberline {1}Linear Algebra}{4}{section.2}%
+\contentsline {subsection}{\numberline {1.a}Least-Squares Problem Statement}{4}{subsection.3}%
+\contentsline {subsection}{\numberline {1.b}Norm}{5}{subsection.10}%
+\contentsline {subsection}{\numberline {1.c}Gram-Schimdt}{6}{subsection.19}%
+\contentsline {subsection}{\numberline {1.d}Symmetric Matrices}{7}{subsection.28}%
+\contentsline {subsection}{\numberline {1.e}Principal Component Analysis}{8}{subsection.35}%
+\contentsline {subsection}{\numberline {1.f}Singular Value Decomposition}{9}{subsection.38}%
+\contentsline {subsection}{\numberline {1.g}Low-Rank Approximation}{11}{subsection.43}%
+\contentsline {section}{\numberline {2}Vector Calculus}{14}{section.56}%
+\contentsline {section}{\numberline {3}Regression}{17}{section.71}%
+\contentsline {subsection}{\numberline {3.a}Sensitivity}{17}{subsection.72}%
+\contentsline {subsection}{\numberline {3.b}Shift property of eigenvalues}{18}{subsection.77}%
+\contentsline {subsection}{\numberline {3.c}Ridge Regression}{18}{subsection.80}%
+\contentsline {subsection}{\numberline {3.d}Tikhonov regularization}{18}{subsection.83}%
+\contentsline {subsection}{\numberline {3.e}Probablistic perspective}{19}{subsection.86}%
+\contentsline {section}{\numberline {4}Convexity}{22}{section.93}%
+\contentsline {subsection}{\numberline {4.a}Convex Sets}{22}{subsection.94}%
+\contentsline {subsection}{\numberline {4.b}Convex Functions}{24}{subsection.111}%
+\contentsline {section}{\numberline {5}Gradient Descent}{27}{section.136}%
+\contentsline {subsection}{\numberline {5.a}Introduction to Gradient Descent}{27}{subsection.137}%
+\contentsline {subsection}{\numberline {5.b}Gradient Descent for $\mu $-strongly convex L-smooth functions}{28}{subsection.144}%
+\contentsline {subsection}{\numberline {5.c}Introduction to Stochastic Gradient Descent}{30}{subsection.153}%
+\contentsline {subsection}{\numberline {5.d}Projected Gradient Descent}{31}{subsection.158}%
+\contentsline {subsection}{\numberline {5.e}Conditional Gradient Descent}{31}{subsection.161}%
+\contentsline {section}{\numberline {6}Duality}{33}{section.164}%
+\contentsline {subsection}{\numberline {6.a}Weak Duality}{33}{subsection.165}%
+\contentsline {subsection}{\numberline {6.b}Strong Duality}{35}{subsection.184}%
+\contentsline {subsection}{\numberline {6.c}Partitioning Problem}{38}{subsection.201}%
+\contentsline {subsection}{\numberline {6.d}LP and Duality}{39}{subsection.206}%
+\contentsline {subsection}{\numberline {6.e}Duality Certificates}{41}{subsection.211}%
+\contentsline {subsection}{\numberline {6.f}Complementary Slackness}{41}{subsection.214}%
+\contentsline {subsection}{\numberline {6.g}KKT Conditions}{42}{subsection.221}%
+\contentsline {section}{\numberline {7}Linear Programs}{43}{section.238}%
+\contentsline {section}{\numberline {8}Quadratic Programs}{45}{section.251}%
+\contentsline {subsection}{\numberline {8.a}Solutions to QP}{45}{subsection.252}%
+\contentsline {subsection}{\numberline {8.b}Applications of QP}{46}{subsection.261}%
+\contentsline {section}{\numberline {9}Second-order Cone Problems}{48}{section.264}%
+\contentsline {section}{\numberline {10}Newton's Method}{51}{section.285}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
